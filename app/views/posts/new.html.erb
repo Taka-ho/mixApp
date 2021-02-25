@@ -1,0 +1,10 @@
+<div>
+   <%= form_with url: @post, local: true do |f| %>
+    <h1>投稿を作る</h1>
+    <%= f.text_area :content, rows: 6 %>
+    <%= f.file_field :images, direct_upload: true, multiple: true %>
+    <div class = 'submit-block'>
+    <%= f.submit class:"button"%>
+    </div>
+    <% end %>
+</div>

@@ -1,0 +1,56 @@
+<div class="content-wrapper">
+    <div class="content-block">
+        <% @posts.each do |post| %>
+        <div class="content">
+         <div class="user-about">
+         <div class="image">
+             <%= image_tag 'user.JPG'%>
+         </div>
+         <div class="profile">
+            <div class="name-history">
+                <div class="name">
+                    taka
+                </div>
+                <div class="mania-histry">
+                    マニア歴：1年
+                </div>
+             </div>
+             
+             <div class="enjoy-point">
+                 楽しいポイント: 自分の手で作ったものが動く様子が楽しい
+             </div>
+         </div>
+       </div>
+       
+         <div class="text">
+             <p><% post.content %></p>
+         </div>
+
+         <% if @psot.images.attached? %>
+         <div class = 'images'>
+         <%= image_tag image %> <br>
+         </div>
+         <% end %>
+
+        
+         <div class="action-menu">
+             <div class="like">
+
+             </div>
+             <div class="comment">
+                 
+             </div>
+         </div>
+
+        </div>
+        <% end %>
+    </div>
+    <div class="sidebar">
+     <div class="box">
+
+     </div>
+     <div class="box">
+         
+    </div>
+    </div>
+</div>
