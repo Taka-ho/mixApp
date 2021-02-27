@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2021_02_25_002308) do
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
-    t.integer "leaning_histry"
-    t.string "purpose"
+    t.integer "mania_histry"
+    t.string "enjoy_point"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
