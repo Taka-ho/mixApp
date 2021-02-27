@@ -1,10 +1,9 @@
-<div>
-   <%= form_with url: @post, local: true do |f| %>
-    <h1>投稿を作る</h1>
-    <%= f.text_area :content, rows: 6 %>
+<div class ='post-content'>
+   <%= form_with model: @post, local: true  do |f| %>
+    <%= f.text_area :content, :placeholder => "いまどんなカンジ？"%>
     <%= f.file_field :images, direct_upload: true, multiple: true %>
     <div class = 'submit-block'>
-    <%= f.submit class:"button"%>
+       <%= f.submit '投稿する', class:"button"%>
     </div>
-    <% end %>
+   <% end %>
 </div>

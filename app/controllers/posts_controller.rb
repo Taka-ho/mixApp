@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_post, only: [:edit, :update, :show, :destroy]
 
     def index
         @posts = Post.all
-        @user = User.find_by(id: @post.user_id)
       end
-     
-    def new
-        @post = Post.new
-      end
+
+      def new
+      @post = Post.new
+    end
     
     def edit
       @post = Post.find(post_params)
@@ -16,9 +16,9 @@ class PostsController < ApplicationController
     
     def create
       return redirect_to new_profile_path,alert: "プロフィールを登録してください" if current_user.profile.blank?
-      @post = Post.params.require(:post).permit(:content, images: []) 
       @post = current_user
-        if @post.save
+      @post = Post.create params.require(:post).permit(:content, images: []) 
+      if @post.save
         redirect_to root_path,notice:'投稿に成功しました'
         else
           render :new

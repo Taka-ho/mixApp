@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
     has_many_attached :images
-    has_one :user
+    belongs_to :user, optional: true
 end

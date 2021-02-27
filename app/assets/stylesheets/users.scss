@@ -1,4 +1,4 @@
-#registrations-new, #sessions-new, #registrations-create{
+#registrations-new, #sessions-new, #registrations-create,#passwords-new{
     h2{
         text-align: center;
     }
@@ -18,7 +18,7 @@
         margin: 15px auto;
         width: 150px;
        
-            .button {
+            .button{
                 display       : inline-block;
                 border-radius : 5%;          /* 角丸       */
                 font-size     : 18pt;        /* 文字サイズ */

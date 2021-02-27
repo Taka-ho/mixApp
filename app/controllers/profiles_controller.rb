@@ -6,7 +6,8 @@ class ProfilesController < ApplicationController
     end
 
     def new
-    @profile = Profile.new
+        return redirect_to edit_profile_path(current_user.profile)if current_user.profile.present?
+        @profile = Profile.new
     end
 
     def edit
@@ -16,7 +17,7 @@ class ProfilesController < ApplicationController
         @profile = Profile.new(profile_params)
         @profile.user = current_user
         if @profile.save
-            redirect_to root_path, notice:'プロフィールを登録しました。どうぞ楽しんでいってください'
+            redirect_to posts_path, notice:'プロフィールを登録しました。どうぞ楽しんでいってください'
         else
             render :new
         end
