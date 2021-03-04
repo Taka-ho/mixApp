@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :posts
   has_one :profile, dependent: :destroy
 
-  delegate :name, :leaning_histry, :purpoose, :image, to: :profile
+  delegate :name, :mania_histry, :enjoy_point, :image, to: :profile
 end

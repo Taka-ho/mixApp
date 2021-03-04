@@ -23,15 +23,16 @@
        </div>
        
          <div class="text">
-             <p><% post.content %></p>
+             <p><%= post.content %></p>
          </div>
 
-         <% if @psot.images.attached? %>
+         <% if @post.images.attached? %>
          <div class = 'images'>
-         <%= image_tag image %> <br>
+         <% @post.images.each do |image| %>
+         <%= image_tag post.images %>
          </div>
          <% end %>
-
+         <% end %>
         
          <div class="action-menu">
              <div class="like">
@@ -43,6 +44,7 @@
          </div>
 
         </div>
+
         <% end %>
     </div>
     <div class="sidebar">

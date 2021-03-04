@@ -3,11 +3,11 @@
 one:
   users: one
   name: MyString
-  leaning_histry: 1
-  purpose: MyString
+  mania_histry: 1
+  enjoy_point: MyString
 
 two:
   users: two
   name: MyString
-  leaning_histry: 1
-  purpose: MyString
+  mania_histry: 1
+  enjoy_point: MyString

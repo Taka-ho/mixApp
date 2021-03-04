@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
 
     def updated
         if @profile.update(profile_params)
-            redirect_to root_path, notice:'プロフィールを更新しました'
+            redirect_to posts_path, notice:'プロフィールを更新しました'
         else
             render :edit
         end
@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
 
     def profile_params
         params.require(:profile).permit(
-            :name, :leaning_histry, :purpose, :image
+            :name, :mania_histry, :enjoy_point, :image
         )
     end
 end
