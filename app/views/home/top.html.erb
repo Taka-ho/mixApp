@@ -3,21 +3,26 @@
         <% @posts.each do |post| %>
         <div class="content">
          <div class="user-about">
-         <div class="image">
-             <%= image_tag 'user.JPG'%>
-         </div>
+             <div class="image">
+             <% if current_user.image.attached? %>
+                <%= image_tag current_user.image %>
+            <% else %>
+            <%= image_tag no.user.png %>
+                <% end %>
+             </div>
+         
          <div class="profile">
             <div class="name-history">
                 <div class="name">
-                    taka
+                <%= current_user.name%>
                 </div>
                 <div class="mania-histry">
-                    マニア歴：1年
+                    <%= "学習歴:#{current_user.mania_histry}年" %>
                 </div>
              </div>
              
              <div class="enjoy-point">
-                 楽しいポイント: 自分の手で作ったものが動く様子が楽しい
+             <%= "楽しいポイント#{current_user.enjoy_point}"%>
              </div>
          </div>
        </div>
@@ -27,8 +32,8 @@
     </div>
    
     <% if post.images.attached? %>
-    <div class = 'images'>
     <% post.images.each do |image| %>
+    <div class = 'images'>
     <%= image_tag image %>
     </div>
     <% end %>
