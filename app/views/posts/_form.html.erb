@@ -1,7 +1,7 @@
 <div class ='post-content'>
    <%= form_with model: @post, local: true  do |f| %>
     <%= f.text_area :content, :placeholder => "いまどんなカンジ？"%>
-    <%= f.file_field :images, multiple: true %>
+    <%= f.file_field :images, multiple: true%>
     <div class = 'submit-block'>
        <%= f.submit '投稿する', class:"button"%>
     </div>

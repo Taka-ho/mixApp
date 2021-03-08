@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     def create
       return redirect_to new_profile_path,alert: "プロフィールを登録してください" if current_user.profile.blank?
       @post = current_user
-      @post = Post.new(content_params) 
+      @post = Post.create params.require(:post).permit(:content, images: [])
       if @post.save
         redirect_to root_path,notice:'投稿に成功しました'
         else
@@ -26,11 +26,7 @@ class PostsController < ApplicationController
       end
       
       def update
-        if @post.update(post_params)
-          redirect_to root_path
-        else
-          render :edit
-        end
+        @post.update params.require(:post).permit(:content, images: [])
       end
 
       def destroy
@@ -42,13 +38,7 @@ class PostsController < ApplicationController
       end
 
       private
-        def post_params
-            params.require(:post).permit(:content, images: [])
-        end
 
-        def content_params
-          params.require(:post).permit(:content, images: []) 
-        end
         def find_post
           @post = Post.find(params[:id])
         end
