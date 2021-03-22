@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     
     
     def create
-      return redirect_to new_profile_path,alert: "プロフィールを登録してください" if current_user.profile.blank?
       @post = current_user
       @post = Post.create(post_params)
       if @post.save
