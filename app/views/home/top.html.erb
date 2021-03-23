@@ -5,7 +5,7 @@
          <div class="user-about">
              <div class="image">
              <% if @user.image.attached? %>
-             <%= image_tag @user.image %>
+             <%= image_tag image %>
                 <% else %>
             <%= image_tag no.user.png %>
                 <% end %>
@@ -22,7 +22,7 @@
              </div>
              
              <div class="enjoy-point">
-             <%= "楽しいポイント#{current_user.enjoy_point}"%>
+             <%= "楽しいポイント#{user.enjoy_point}"%>
              </div>
          </div>
        </div>
