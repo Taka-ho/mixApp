@@ -3,42 +3,50 @@
         <% @posts.each do |post| %>
         <div class="content">
          <div class="user-about">
-         <div class="image">
-         <% if @user.image.attached? %>
-         <%= image_tag @user.image %>
-            <% else %>
-        <%= image_tag no.user.png %>
-            <% end %>
-         </div>
+             <div class="image">
+             <% if @user.image.attached? %>
+             <%= image_tag current_user.image %>
+                <% else %>
+            <%= image_tag no.user.png %>
+                <% end %>
+             </div>
+
          <div class="profile">
             <div class="name-history">
                 <div class="name">
-                    taka
+                <%= @user.name%>
                 </div>
                 <div class="mania-histry">
-                    マニア歴：1年
+                    <%= "学習歴:#{@user.mania_histry}年" %>
                 </div>
              </div>
              
              <div class="enjoy-point">
-                 楽しいポイント: 自分の手で作ったものが動く様子が楽しい
+             <%= "楽しいポイント#{@user.enjoy_point}"%>
              </div>
          </div>
        </div>
        
-         <div class="text">
-             <p><% post.content %></p>
-         </div>
+       <div class="text">
+        <p><%= post.content %></p>
+    </div>
+   
+    <% if post.images.attached? %>
+    <% post.images.each do |image| %>
+    <div class = 'images'>
+    <%= image_tag image %>
+    </div>
+    <% end %>
+    <% end %>
 
-         <% if @psot.images.attached? %>
-         <div class = 'images'>
-         <%= image_tag images %> <br>
-         </div>
-         <% end %>
- 
          <div class="action-menu">
              <div class="like">
-
+             <h3>いいね件数: <%#= @post.likes.count %></h3>
+             <%# if current_user.already_liked?(@post) %>
+               <%#= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
+             <%# else %>
+               <%#= button_to 'いいね', post_likes_path(@post) %>
+             <%# end %>
              </div>
              <div class="comment">
                  
@@ -47,6 +55,7 @@
 
         </div>
         <% end %>
+
     </div>
     <div class="sidebar">
      <div class="box">
