@@ -4,8 +4,8 @@
         <div class="content">
          <div class="user-about">
              <div class="image">
-             <% if @user.image.attached? %>
-             <%= image_tag current_user.image %>
+             <% if post.user.image.attached? %>
+             <%= image_tag post.user.image %>
                 <% else %>
             <%= image_tag no.user.png %>
                 <% end %>
@@ -14,16 +14,20 @@
          <div class="profile">
             <div class="name-history">
                 <div class="name">
+<<<<<<< HEAD
                 <%= @user.name %>
 
+=======
+                <%= post.user.name%>
+>>>>>>> 3d315a3c3d6db1b02ac5160c47e0c8db3b85487c
                 </div>
                 <div class="mania-histry">
-                    <%= "学習歴:#{@user.mania_histry}年" %>
+                    <%= "学習歴:#{post.user.mania_histry}年" %>
                 </div>
              </div>
              
              <div class="enjoy-point">
-             <%= "楽しいポイント#{@user.enjoy_point}"%>
+             <%= "楽しいポイント#{post.user.enjoy_point}"%>
              </div>
          </div>
        </div>
