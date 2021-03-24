@@ -12,6 +12,8 @@ class PostsController < ApplicationController
     end
 
     def show
+      @like = Like.new
+
     end
     
     
