@@ -14,7 +14,9 @@
          <div class="profile">
             <div class="name-history">
                 <div class="name">
+
                 <%= post.user.name %>
+
 
                 </div>
                 <div class="mania-histry">
@@ -31,14 +33,13 @@
        <div class="text">
         <p><%= post.content %></p>
     </div>
-   
         <% if post.images.attached? %>
-           <% post.images.each do |image| %>
+        <% post.images.each do |image| %>
             <div class = 'images'>
                 <%= image_tag image %>
             </div>
         <% end %>
-
+        <% end %>
          <div class="action-menu">
              <div class="like">
              <h3>いいね件数: <%= post.likes.count %></h3>
@@ -56,7 +57,6 @@
          </div>
 
         </div>
-        <% end %>
         <% end %>
 
     </div>

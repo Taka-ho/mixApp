@@ -8,12 +8,11 @@ class PostsController < ApplicationController
       end
 
       def new
+        @post = Post.new
         @like = Like.new
       end
 
     def show
-      @like = Like.new
-
     end
     
     
