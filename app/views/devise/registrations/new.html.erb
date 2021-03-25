@@ -3,6 +3,9 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 <%= render 'shared/error_messages', model: f.object %>
 
+<%= render 'shared/error_messages', model: f.object %>
+
+
   <div class="field">
     <%= f.label :email, 'メールアドレス' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
