@@ -5,11 +5,11 @@
          <div class="user-about">
              <div class="image">
              <% if post.user.image.attached? %>
-                <%= image_tag current_user.image %>
-            <% else %>
-                <%= image_tag no.user.png %>
-            <% end %>
-          </div>
+             <%= image_tag post.user.image %>
+                <% else %>
+            <%= image_tag no.user.png %>
+                <% end %>
+             </div>
 
          <div class="profile">
             <div class="name-history">

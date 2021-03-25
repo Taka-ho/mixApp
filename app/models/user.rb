@@ -19,7 +19,5 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }
   end
 
-  def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
-  end
+ 
 end
