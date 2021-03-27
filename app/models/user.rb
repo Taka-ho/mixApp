@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
  
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    self.likes.exists?(post_id: posts.ids)
   end
 
 
@@ -22,6 +22,4 @@ class User < ApplicationRecord
     validates :email
     validates :password, length: { minimum: 6 }
   end
-
- 
 end

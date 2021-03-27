@@ -41,6 +41,7 @@
         <% end %>
         <% end %>
          <div class="action-menu">
+            <% if user_signed_in? %>
              <div class="like">
              <h3>いいね件数: <%= post.likes.count %></h3>
              <div class = 'like-button'>
@@ -52,6 +53,7 @@
 
             </div>
             </div>
+            <% end %>
              <div class="comment">
                  
         </div>
