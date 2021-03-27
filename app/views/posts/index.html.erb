@@ -15,7 +15,7 @@
             <div class="name-history">
                 <div class="name">
 
-                <%= post.user.name %>
+                <%= post.user.nickname %>
 
 
                 </div>
@@ -33,33 +33,39 @@
        <div class="text">
         <p><%= post.content %></p>
     </div>
-   
         <% if post.images.attached? %>
-           <% post.images.each do |image| %>
+        <% post.images.each do |image| %>
             <div class = 'images'>
                 <%= image_tag image %>
             </div>
         <% end %>
-
+        <% end %>
          <div class="action-menu">
+            <% if user_signed_in? %>
              <div class="like">
              <h3>いいね件数: <%= post.likes.count %></h3>
-             <% if @post.present? %>
-             <% if current_user.already_liked?(@post) %>
-               <%= button_to 'いいねを取り消す', post_like_path(post), method: :delete %>
+             <div class = 'like-button'>
+             <% if post.user.likes.blank? %>
+             <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :POST %></td>
+                <i class="fa fa-heart like-btn"></i>
+
              <% else %>
-               <%= button_to 'いいね', post_likes_path(post) %>
+             <td><%= link_to 'いいねを外す', destroy_like_path(post),    class: "like-link", method: :DELETE %></td>
+             <i class="fa fa-heart unlike-btn"></i>
+
              <% end %>
-             <% end %>
-             </div>
+
+            </div>
+            </div>
+            <% end %>
              <div class="comment">
                  
-             </div>
+        </div>
          </div>
 
         </div>
         <% end %>
-        <% end %>
+
 
     </div>
     <div class="sidebar">

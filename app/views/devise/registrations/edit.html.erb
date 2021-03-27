@@ -31,6 +31,24 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field">
+        <%= f.label :nickname,'ニックネーム' %>
+        <%= f.text_field :nickname, autocomplete: "name" %>
+    </div>
+  <div class="field">
+    <%= f.label :mania_histry,'趣味歴' %>
+    <%= f.number_field :mania_histry, autocomplete: "mania_histry" %>
+  </div>
+  <div class="field">
+    <%= f.label :enjoy_point, '楽しいところ' %>
+    <%= f.text_field :enjoy_point, autocomplete: "enjoy_point" %>
+
+  </div>
+  <div class="field">
+    <%= f.label :image,'ユーザー画像' %>
+    <%= f.file_field :image %>
+</div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

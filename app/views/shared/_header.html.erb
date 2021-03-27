@@ -6,7 +6,7 @@
         <ul id ='nav'>
         <%if user_signed_in?%>
             <li>
-               <%= link_to '新規投稿', new_post_path %>
+               <%= link_to '新規投稿', new_post_path(@post) %>
             </li>
 
             <li>    

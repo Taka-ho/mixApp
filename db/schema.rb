@@ -44,12 +44,6 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -71,7 +65,7 @@ ActiveRecord::Schema.define(version: 202102513060741) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string "name"
+    t.string "nickname"
     t.integer "mania_histry"
     t.string "enjoy_point"
     t.datetime "remember_created_at"
@@ -82,10 +76,7 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-<<<<<<< HEAD
   add_foreign_key "comments", "posts"
-=======
->>>>>>> 459fee3f14cd4f940746edd0dcf1a63eac6eccf5
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
