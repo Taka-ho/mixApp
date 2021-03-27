@@ -1,27 +1,59 @@
-<%= render 'shared/content'%>
+<div class="content-block">
+<div class="content">
 
-  <div class="like">
-     <h3>いいね件数: <%#= @post.likes.count %></h3>
-        <%# if current_user.already_liked?(@post) %>
-            <%#= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
-          <%# else %>
-              <%#= button_to 'いいね', post_likes_path(@post) %>
-        <%# end %>
+ <div class="user-about">
+     <div class="image">
+     <% if post.user.image.attached? %>
+     <%= image_tag post.user.image %>
+        <% else %>
+    <%= image_tag no.user.png %>
+        <% end %>
+     </div>
+
+ <div class="profile">
+    <div class="name-history">
+        <div class="name">
+
+        <%= post.user.name %>
+
+
+        </div>
+        <div class="mania-histry">
+            <%= "学習歴:#{post.user.mania_histry}年" %>
+        </div>
+     </div>
+     
+     <div class="enjoy-point">
+     <%= "楽しいポイント#{post.user.enjoy_point}"%>
+     </div>
+ </div>
+</div>
+
+<div class="text">
+<p><%= post.content %></p>
+</div>
+
+<% if post.images.attached? %>
+   <% post.images.each do |image| %>
+    <div class = 'images'>
+        <%= image_tag image %>
     </div>
-
-<h2>コメント一覧</h2>
-<% @comments.each do |c| %>
-  <div>
-    <a href="/users/<%= @post.user.id %>"><%= c.user.email %></a>
-    <%= c.content %>
-    <hr>
-  </div>
 <% end %>
-
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit 'コメントする' %>
 <% end %>
+ <div class="action-menu">
+     <div class="like">
+     <h3>いいね件数: <%= post.likes.count %></h3>
+     <% if @post.present? %>
+     <% if current_user.already_liked?(@post) %>
+       <%= button_to 'いいねを取り消す', post_like_path(post), method: :delete %>
+     <% else %>
+       <%= button_to 'いいね', post_likes_path(post) %>
+     <% end %>
+     <% end %>
+     </div>
+     <div class="comment">
+         
+     </div>
+ </div>
 
-<%= link_to "ホームへ戻る", posts_path %>
+</div>

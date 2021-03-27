@@ -8,8 +8,9 @@ class PostsController < ApplicationController
       end
 
       def new
-      @post = Post.new
-    end
+        @post = Post.new
+
+      end
 
     def show
       @comments = @post.comments
@@ -45,7 +46,7 @@ class PostsController < ApplicationController
       private
 
         def post_params
-          params.require(:post).permit(:content, images: []).merge(user_id: current_user.id)
+          params.require(:post).permit(:content, {images: []}).merge(user_id: current_user.id)
         end
 
         def find_post
