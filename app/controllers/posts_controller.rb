@@ -13,8 +13,8 @@ class PostsController < ApplicationController
       end
 
     def show
-      @comments = @post.comments
       @comment = Comment.new
+      @comments = Comment.where(comment_id: @question.id)
     end
     
     

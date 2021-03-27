@@ -5,13 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
     
   has_one_attached :image
-  has_many :comments       
   has_many :posts
-  has_many :likes, dependent: :destroy
-  has_many :liked_posts, through: :likes, source: :post
+  has_many :likes
+  has_many :comments, foreign_key: :commenter_id
  
-  def already_liked?(post)
-    self.likes.exists?(post_id: posts.ids)
+  def liked_by?(post_id)
+    likes.where(post_id: post_id).exists?
   end
 
 
