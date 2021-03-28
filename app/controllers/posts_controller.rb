@@ -5,6 +5,8 @@ class PostsController < ApplicationController
     def index
         @posts = Post.all
         @like = Like.new
+        @comment = Comment.new
+        @comments = @post.comments
       end
 
       def new
@@ -13,8 +15,7 @@ class PostsController < ApplicationController
       end
 
     def show
-      @comment = Comment.new
-      @comments = Comment.where(comment_id: @question.id)
+
     end
     
     
