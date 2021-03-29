@@ -62,7 +62,7 @@
         <% @comments.each do |comment| %>
             <div class="comment-user">
             <tr>
-            <td><%= comment.user.nickname %></td>
+            <td><%= comment.user.nickname %>:</td>
             <td><%= comment.comment %></td>
             <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
             </tr>
