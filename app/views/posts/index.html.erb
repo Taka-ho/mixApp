@@ -58,26 +58,7 @@
             </div>
             <% end %>
              <div class="comment">
-             <%#= form_with model: @comment do |f| %>
-                <%#= f.text_area :comment %>
-                <%#= f.hidden_field :comment_id, { value:post.id } %>
-                <%#= f.hidden_field :commenter_id, { value:current_user.id } %>
-                <%#= f.submit 'コメントをする' %>
-              <%# end %> 
-
-              <div class="comment-user">
-                <%= form_for [@post, @comment] do |f| %>
-                    <%= f.text_area :comment, size: "40x5" %>
-                    <%= f.submit '送信', class: "btn-sm btn-primary" %>
-                <% end %>
-                <% @comments.each do |comment| %>
-                    <tr>
-                    <td><%= comment.user.name %></td>
-                    <td><%= comment.comment %></td>
-                    <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
-                    </tr>
-                <% end %>
-              </div>
+                <h3>コメント件数: <%= post.comments.count %></h3>
              </div>
          </div>
 

@@ -21,5 +21,6 @@ class User < ApplicationRecord
     validates :enjoy_point
     validates :email
     validates :password, length: { minimum: 6 }
+
   end
 end
