@@ -59,6 +59,7 @@
             <% end %>
              <div class="comment">
                 <h3>コメント件数: <%= post.comments.count %></h3>
+                <%= link_to "コメントする", "/posts/#{post.id}" %>
              </div>
          </div>
 
