@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :show, :destroy]
 
     def index
-        @posts = Post.all
+        @posts = Post.all.order(id: "DESC")
         @like = Like.new
 
       end
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
     def show
         @comment = Comment.new     
-        @comments = @post.comments
+        @comments = @post.comments.order(id: "DESC")
     end
     
     
