@@ -40,3 +40,48 @@
     
     }
 }
+
+#posts-show{
+    .content{
+        border: 2px solid #000;
+        padding: 15px;
+        margin-bottom: 10px;
+         .user-about{
+          display: flex;
+    
+          .image{ 
+             width: 10%; 
+        }
+        
+        .profile{
+          margin-left: 10px;
+          
+          .name-history{
+            margin-bottom: 3px;
+              display: flex;
+              width: 100%;
+              .name{ 
+                font-weight: bold;
+               }
+             
+                .mania-histry{
+                 margin-left: 20px;            
+                }
+             }
+     
+          .enjoy-point{
+              width: 100%;
+              font-size: 13px;
+          }
+        }
+    }
+}
+}
+
+.comment-buttom{
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+
+}

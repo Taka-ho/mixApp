@@ -45,13 +45,12 @@
              <div class="like">
              <h3>いいね件数: <%= post.likes.count %></h3>
              <div class = 'like-button'>
-             <% if post.user.likes.blank? %>
-             <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :POST %></td>
+             <% if current_user.liked_by?(post.id) %>
+                <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE %></td>
+                <i class="fa fa-heart unlike-btn"></i>
+            <% else %>
+                <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :create %></td>
                 <i class="fa fa-heart like-btn"></i>
-
-             <% else %>
-             <td><%= link_to 'いいねを外す', destroy_like_path(post),    class: "like-link", method: :DELETE %></td>
-             <i class="fa fa-heart unlike-btn"></i>
 
              <% end %>
 
@@ -59,8 +58,9 @@
             </div>
             <% end %>
              <div class="comment">
-                 
-        </div>
+                <h3>コメント件数: <%= post.comments.count %></h3>
+                <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
+             </div>
          </div>
 
         </div>
