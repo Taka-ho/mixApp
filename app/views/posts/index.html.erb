@@ -58,9 +58,17 @@
             </div>
             <% end %>
              <div class="comment">
+                <%if user_signed_in?%>
                 <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
-             </div>
+                <% else %>
+                <h3>コメント件数: <%= post.comments.count %></h3>
+                <%= link_to "コメントを見る", "/posts/#{post.id}", class: "comment-buttom" %>
+                
+                
+                <% end %>
+ 
+            </div>
          </div>
 
         </div>
