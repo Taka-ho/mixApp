@@ -41,12 +41,17 @@
         <% end %>
         <% end %>
          <div class="action-menu">
+            <% if user_signed_in? %>
             <div class="like">
                 <h3>いいね件数: <%= post.likes.count %></h3>
             </div>
+            <% else %>
+            <div class="like">
+                <h3>いいね件数: <%= post.likes.count %></h3>
+            </div>
+            <% end %>
+
             <% if user_signed_in? %>
-             <div class="like">
-             <h3>いいね件数: <%= post.likes.count %></h3>
              <div class = 'like-button'>
              <% if current_user.liked_by?(post.id) %>
                 <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE %></td>
@@ -54,12 +59,10 @@
             <% else %>
                 <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :create %></td>
                 <i class="fa fa-heart like-btn"></i>
-
              <% end %>
-
-            </div>
             </div>
             <% end %>
+
              <div class="comment">
                 <%if user_signed_in?%>
                 <h3>コメント件数: <%= post.comments.count %></h3>
@@ -68,8 +71,8 @@
                 <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントを見る", "/posts/#{post.id}", class: "comment-buttom" %>
                 <% end %>
- 
             </div>
+            
             <%if user_signed_in?%>
             <% if current_user.id == post.user.id || user_signed_in %>
             <%= link_to "編集", edit_post_path(post) %>
