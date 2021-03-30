@@ -41,6 +41,9 @@
         <% end %>
         <% end %>
          <div class="action-menu">
+            <div class="like">
+                <h3>いいね件数: <%= post.likes.count %></h3>
+            </div>
             <% if user_signed_in? %>
              <div class="like">
              <h3>いいね件数: <%= post.likes.count %></h3>
@@ -67,9 +70,11 @@
                 <% end %>
  
             </div>
-            <% if current_user.id == post.user.id %>
+            <%if user_signed_in?%>
+            <% if current_user.id == post.user.id || user_signed_in %>
             <%= link_to "編集", edit_post_path(post) %>
             <%= link_to "削除", post_path(post), method: :delete %>
+            <% end %>
             <% end %>
 
          </div>
