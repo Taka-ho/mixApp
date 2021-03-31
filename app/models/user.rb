@@ -15,6 +15,10 @@ class User < ApplicationRecord
     likes.where(post_id: post_id).exists?
   end
 
+  def liked_by?(movie_id)
+    likes.where(movie_id: movie_id).exists?
+  end
+
 
   with_options presence: true do
     validates :nickname

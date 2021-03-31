@@ -1,11 +1,11 @@
 <div class="content-wrapper">
     <div class="content-block">
-        <% @posts.each do |post| %>
+        <% @movies.each do |movie| %>
         <div class="content">
          <div class="user-about">
              <div class="image">
-             <% if post.user.image.attached? %>
-             <%= image_tag post.user.image %>
+             <% if movie.user.image.attached? %>
+             <%= image_tag movie.user.image %>
                 <% else %>
             <%= image_tag no.user.png %>
                 <% end %>
@@ -15,49 +15,47 @@
             <div class="name-history">
                 <div class="name">
 
-                <%= post.user.nickname %>
+                <%= movie.user.nickname %>
 
 
                 </div>
                 <div class="mania-histry">
-                    <%= "学習歴:#{post.user.mania_histry}年" %>
+                    <%= "学習歴:#{movie.user.mania_histry}年" %>
                 </div>
              </div>
              
              <div class="enjoy-point">
-             <%= "楽しいポイント#{post.user.enjoy_point}"%>
+             <%= "楽しいポイント#{movie.user.enjoy_point}"%>
              </div>
          </div>
        </div>
        
        <div class="text">
-        <p><%= post.content %></p>
+       <p><%= movie.title %></p> <br>
+       <p><%= movie.introduction %></p>
+       <div class = 'video'>
+       <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls></video>
+       </div>
     </div>
-        <% if post.images.attached? %>
-        <% post.images.each do |image| %>
-            <div class = 'images'>
-                <%= image_tag image %>
-            </div>
-        <% end %>
-        <% end %>
+       
          <div class="action-menu">
             <% if user_signed_in? %>
             <div class="like">
-                <h3>いいね件数: <%= post.likes.count %></h3>
+                <h3>いいね件数: <%= movie.likes.count %></h3>
             </div>
             <% else %>
             <div class="like">
-                <h3>いいね件数: <%= post.likes.count %></h3>
+                <h3>いいね件数: <%= movie.likes.count %></h3>
             </div>
             <% end %>
 
             <% if user_signed_in? %>
              <div class = 'like-button'>
-             <% if current_user.liked_by?(post.id) %>
-                <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE %></td>
+             <% if current_user.liked_by?(movie.id) %>
+                <td><%= link_to 'いいねを外す', destroy_like_path(movie), class: "like-link", method: :DELETE %></td>
                 <i class="fa fa-heart unlike-btn"></i>
             <% else %>
-                <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :create %></td>
+                <td><%= link_to 'いいね', create_like_path(movie), class: "like-link", method: :create %></td>
                 <i class="fa fa-heart like-btn"></i>
              <% end %>
             </div>
@@ -65,18 +63,18 @@
 
              <div class="comment">
                 <%if user_signed_in?%>
-                <h3>コメント件数: <%= post.comments.count %></h3>
-                <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
+                <h3>コメント件数: <%= movie.comments.count %></h3>
+                <%= link_to "コメントする", "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% else %>
-                <h3>コメント件数: <%= post.comments.count %></h3>
-                <%= link_to "コメントを見る", "/posts/#{post.id}", class: "comment-buttom" %>
+                <h3>コメント件数: <%= movie.comments.count %></h3>
+                <%= link_to "コメントを見る", "/movie/#{movie.id}", class: "comment-buttom" %>
                 <% end %>
             </div>
                 
             <%if user_signed_in?%>
-            <% if current_user.id == post.user.id || user_signed_in %>
-            <%= link_to "編集", edit_post_path(post) %>
-            <%= link_to "削除", post_path(post), method: :delete %>
+            <% if current_user.id == movie.user.id || user_signed_in %>
+            <%= link_to "編集", edit_movie_path(movie) %>
+            <%= link_to "削除", movie_path(movie), method: :delete %>
             <% end %>
             <% end %>
 
