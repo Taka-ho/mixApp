@@ -31,8 +31,8 @@
        </div>
        
        <div class="text">
-       <p><%= movie.title %></p> <br>
-       <p><%= movie.introduction %></p>
+       <p>タイトル: <%= movie.title %></p> <br>
+       <p>説明: <%= movie.introduction %></p>
        <div class = 'video'>
        <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls></video>
        </div>
@@ -71,13 +71,14 @@
                 <% end %>
             </div>
                 
+            <div class="user-action">
             <%if user_signed_in?%>
             <% if current_user.id == movie.user.id || user_signed_in %>
             <%= link_to "編集", edit_movie_path(movie) %>
             <%= link_to "削除", movie_path(movie), method: :delete %>
             <% end %>
             <% end %>
-
+            </div>
          </div>
 
         </div>
