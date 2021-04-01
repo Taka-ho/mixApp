@@ -52,7 +52,7 @@ class MoviesController < ApplicationController
               end
       
               def find_movie
-                @movie = Movie.where(params[:id])
+                @movie = Movie.find(params[:id])
               end
       
               def force_redirect_unless_my_movie
