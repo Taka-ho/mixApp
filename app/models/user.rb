@@ -17,7 +17,6 @@ class User < ApplicationRecord
   end
 
 
-
   with_options presence: true do
     validates :nickname
     validates :mania_histry

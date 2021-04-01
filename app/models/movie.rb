@@ -16,11 +16,11 @@ class Movie < ApplicationRecord
 
     def movie_presence
       if movie.attached?
-        if !movie.content_type.in?(%('movie/mp4 movie/mov'))
-          errors.add(:image, 'にはmp4またはmovファイルを添付してください')
+        if movie.content_type.in?(%('movie/mp4 movie/mov'))
+          errors.add(:movie, 'にはmp4またはmovファイルを添付してください')
         end
       else
-        errors.add(:image, 'ファイルを添付してください')
+        errors.add(:movie, 'ファイルを添付してください')
       end
     end
   
