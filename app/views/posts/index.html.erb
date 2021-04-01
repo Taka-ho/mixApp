@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
     <div class="content-block">
         <% @posts.each do |post| %>
@@ -7,7 +8,7 @@
              <% if post.user.image.attached? %>
              <%= image_tag post.user.image %>
                 <% else %>
-            <%= image_tag no.user.png %>
+            <%= image_tag 'no.user.png' %>
                 <% end %>
              </div>
 
@@ -41,45 +42,19 @@
         <% end %>
         <% end %>
          <div class="action-menu">
-            <% if user_signed_in? %>
-            <div class="like">
-                <h3>いいね件数: <%= post.likes.count %></h3>
-            </div>
-            <% else %>
-            <div class="like">
-                <h3>いいね件数: <%= post.likes.count %></h3>
-            </div>
-            <% end %>
-
-            <% if user_signed_in? %>
-             <div class = 'like-button'>
-             <% if current_user.liked_by?(post.id) %>
-                <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE %></td>
-                <i class="fa fa-heart unlike-btn"></i>
-            <% else %>
-                <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :create %></td>
-                <i class="fa fa-heart like-btn"></i>
-             <% end %>
-            </div>
-            <% end %>
+         <%= render 'like', post: post %>
 
              <div class="comment">
-                <%if user_signed_in?%>
                 <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
-                <% else %>
-                <h3>コメント件数: <%= post.comments.count %></h3>
-                <%= link_to "コメントを見る", "/posts/#{post.id}", class: "comment-buttom" %>
-                <% end %>
-            </div>
-                
-            <%if user_signed_in?%>
-            <% if current_user.id == post.user.id || user_signed_in %>
-            <%= link_to "編集", edit_post_path(post) %>
-            <%= link_to "削除", post_path(post), method: :delete %>
-            <% end %>
-            <% end %>
-
+             </div>
+             <%if user_signed_in?%>
+             <% if current_user.id == post.user.id %>
+             <%= link_to "編集", edit_post_path(post) %>
+             <%= link_to "削除", post_path(post), method: :delete %>
+             <% end %>
+             <% end %>
+ 
          </div>
 
         </div>
