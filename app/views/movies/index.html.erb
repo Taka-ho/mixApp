@@ -67,7 +67,7 @@
                 <%= link_to "コメントする", "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% else %>
                 <h3>コメント件数: <%= movie.comments.count %></h3>
-                <%= link_to "コメントを見る", "/movie/#{movie.id}", class: "comment-buttom" %>
+                <%= link_to "コメントを見る", "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% end %>
             </div>
                 
