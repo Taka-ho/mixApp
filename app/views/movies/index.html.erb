@@ -39,22 +39,14 @@
     </div>
        
          <div class="action-menu">
-            <% if user_signed_in? %>
-            <div class="like">
-                <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-            </div>
-            <% else %>
-            <div class="like">
-                <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-            </div>
-            <% end %>
+
             <tr id="post_<%= movie.id %>">
             <%= render 'like',movie: movie %> 
             </tr>
              <div class="comment">
                 <%if user_signed_in?%>
                 <h3>コメント件数: <%= movie.comments.count %></h3>
-                <%= link_to "コメントする", "/movies/#{movie.id}", class: "comment-buttom" %>
+                <%= link_to "コメントする",  "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% else %>
                 <h3>コメント件数: <%= movie.comments.count %></h3>
                 <%= link_to "コメントを見る", "/movies/#{movie.id}", class: "comment-buttom" %>

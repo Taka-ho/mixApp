@@ -65,6 +65,27 @@ Mac OS Big Sur (インテル版)
 - belongs_to :post
 - belongs_to :user
 
+## movies テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| title    | string | null: false |
+| introduction  | references | null: false, foreign_key: true ,unique: true |
+
+- belongs_to :user
+- belongs_to :movie_like
+
+
+## movie_likes テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| movie_id  | references | null: false, foreign_key: true ,unique: true |
+| user_id  | references | null: false, foreign_key: true ,unique: true |
+
+- belongs_to :movie
+- belongs_to :user
+
 ## posts テーブル
 
 | Column   | Type   | Options     |

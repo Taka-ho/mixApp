@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
       
           def index
               @movies= Movie.all.order(id: "DESC")
-              @like = Like.new
+              @movie_like = Like.new
       
             end
       
