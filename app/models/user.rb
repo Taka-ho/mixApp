@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :posts
   has_many :likes
-  has_many :movielikes
   has_many :comments, dependent: :destroy
+  has_many :movie_likes
   has_many :movies
   
  
@@ -16,6 +16,9 @@ class User < ApplicationRecord
     likes.where(post_id: post_id).exists?
   end
 
+  def movie_liked_by?(movie_id)
+    likes.where(movie_id: movie_id).exists?
+  end
 
   with_options presence: true do
     validates :nickname

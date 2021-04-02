@@ -47,10 +47,18 @@ ActiveRecord::Schema.define(version: 202102513060741) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movie_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "movie_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_movie_likes_on_movie_id"
+    t.index ["user_id"], name: "index_movie_likes_on_user_id"
   end
 
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -66,7 +74,7 @@ ActiveRecord::Schema.define(version: 202102513060741) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -89,6 +97,8 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   add_foreign_key "comments", "movies"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "movie_likes", "movies"
+  add_foreign_key "movie_likes", "users"
   add_foreign_key "movies", "users"
   add_foreign_key "posts", "users"
 end

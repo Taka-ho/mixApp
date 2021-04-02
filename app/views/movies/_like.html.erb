@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+<div class = 'like-button'>
+<% if current_user.movie_liked_by?(movie_like.id) %>
+   <td><%= link_to 'いいねを外す', movie_like_path(movie_like), class: "like-link", method: :DELETE, remote: true %></td>
+   <i class="fa fa-heart unlike-btn"></i>
+<% else %>
+   <td><%= link_to 'いいね', movie_like_path(movie_like), class: "like-link", method: :create, remote: true %></td>
+   <i class="fa fa-heart like-btn"></i>
+<% end %>
+</div>
+<% end %>

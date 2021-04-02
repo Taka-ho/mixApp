@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
               else
                 redirect_to new_movie_path,notice:'投稿に失敗しました'
               end
-            end
+          end
           
             def edit  
             end
