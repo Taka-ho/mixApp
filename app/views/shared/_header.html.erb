@@ -13,6 +13,14 @@
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 
             </li>
+            
+            <li>
+            <%= link_to '動画投稿', new_movie_path %>
+            </li>
+
+            <li>
+            <%= link_to '動画一覧', movies_path %>
+            </li>
             <% else %>
             
             <li>    
@@ -25,9 +33,7 @@
             <% end %>
             
 
-            <li>
-                <a href="#">メニュー4</a>
-            </li>
+            
         </ul>
     </div>
   </div>

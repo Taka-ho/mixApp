@@ -1,0 +1,79 @@
+<div class="content">
+<div class="user-about">
+    <div class="image">
+    <% if @movie.user.image.attached? %>
+    <%= image_tag @movie.user.image %>
+       <% else %>
+   <%= image_tag no.user.png %>
+       <% end %>
+    </div>
+
+<div class="profile">
+   <div class="name-history">
+       <div class="name">
+
+       <%= @movie.user.nickname %>
+
+
+       </div>
+       <div class="mania-histry">
+           <%= "学習歴:#{@movie.user.mania_histry}年" %>
+       </div>
+    </div>
+    
+    <div class="enjoy-point">
+    <%= "楽しいポイント#{@movie.user.enjoy_point}"%>
+    </div>
+</div>
+</div>
+
+<div class="text">
+<p>タイトル: <%= @movie.title %></p> <br>
+<p>説明: <%= @movie.introduction %></p>
+<div class = 'video'>
+<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4", controls></video>
+</div>
+</div>
+
+<div class="action-menu">
+   <% if user_signed_in? %>
+   <div class="like">
+       <h3>いいね件数: <%= @movie.likes.count %></h3>
+   </div>
+   <% else %>
+   <div class="like">
+       <h3>いいね件数: <%= @movie.likes.count %></h3>
+   </div>
+   <% end %>
+
+   <% if user_signed_in? %>
+    <div class = 'like-button'>
+    <% if current_user.liked_by?(@movie.id) %>
+       <td><%= link_to 'いいねを外す', destroy_like_path(@movie), class: "like-link", method: :DELETE %></td>
+       <i class="fa fa-heart unlike-btn"></i>
+   <% else %>
+       <td><%= link_to 'いいね', create_like_path(@movie), class: "like-link", method: :create %></td>
+       <i class="fa fa-heart like-btn"></i>
+    <% end %>
+   </div>
+   <% end %>
+
+    <div class="comment">
+       <%if user_signed_in?%>
+       <h3>コメント件数: <%= @movie.comments.count %></h3>
+       <% else %>
+       <h3>コメント件数: <%= @movie.comments.count %></h3>
+       <% end %>
+   </div>
+       
+   <div class="user-action">
+   <%if user_signed_in?%>
+   <% if current_user.id == @movie.user.id || user_signed_in %>
+   <%= link_to "編集", edit_movie_path(@movie) %>
+   <%= link_to "削除", movie_path(@movie), method: :delete %>
+   <% end %>
+   <% end %>
+   </div>
+</div>
+
+</div>

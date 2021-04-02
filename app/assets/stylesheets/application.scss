@@ -15,8 +15,6 @@
  */
  @import "font-awesome-sprockets";
  @import "font-awesome";
- 
- 
 
 body{
   word-wrap: break-word;
@@ -102,7 +100,11 @@ padding: 10px;
 
       .image{ 
          width: 10%; 
-    }
+      }
+      .video{
+        width: 10%;
+      }
+
     
     .profile{
       margin-left: 10px;
