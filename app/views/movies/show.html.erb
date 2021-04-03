@@ -53,9 +53,9 @@
          <% @movie_comments.each do |movie_comment| %>
             <div class="comment-user">
               <tr>
-                <td><%= movie_comment.user.nickname %>:</td>
+                <td><%= movie_comment.user.nickname %>:  </td>
                 <td><%= movie_comment.movie_comment %></td>
-                <td><%= link_to "削除", movie_movie_comments_path(@movie, movie_comment), method: :delete %></td>
+                <td><%= link_to "削除", movie_movie_comment_path(@movie, movie_comment), method: :delete %></td>
               </tr>
             </div>
           <% end %>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'like/:id', to: 'likes#create', as: 'create_like'
   delete 'like/:id', to: 'likes#destroy', as: 'destroy_like'
 
-  resources :movie_likes, only: [:create, :destroy]
+  post 'movie_like/:id', to: 'movie_likes#create', as: 'create_movie_like'
+  delete 'movie_like/:id', to: 'movie_likes#destroy', as: 'destroy_movie_like'
   root 'posts#index'
 end
