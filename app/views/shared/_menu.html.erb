@@ -1,8 +1,5 @@
-<div id="header">
-  <div class="logo">
-      <a href="/">INN</a>
-      </div>
-      <div class="link">
+<div id="menu">
+      <div class="menu-link">
         <ul id ='nav'>
         <%if user_signed_in?%>
             <li>
@@ -20,6 +17,9 @@
 
             <li>
             <%= link_to '動画一覧', movies_path %>
+            </li>
+            <li>
+            <%= link_to 'つぶやき一覧', root_path %>
             </li>
             <% else %>
             

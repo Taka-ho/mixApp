@@ -4,7 +4,7 @@
     <% if @movie.user.image.attached? %>
     <%= image_tag @movie.user.image %>
        <% else %>
-   <%= image_tag no.user.png %>
+   <%= image_tag 'no.user.png' %>
        <% end %>
     </div>
 
@@ -36,27 +36,9 @@
 </div>
 
 <div class="action-menu">
-   <% if user_signed_in? %>
-   <div class="like">
-       <h3>いいね件数: <%= @movie.likes.count %></h3>
-   </div>
-   <% else %>
-   <div class="like">
-       <h3>いいね件数: <%= @movie.likes.count %></h3>
-   </div>
-   <% end %>
-
-   <% if user_signed_in? %>
-    <div class = 'like-button'>
-    <% if current_user.liked_by?(@movie.id) %>
-       <td><%= link_to 'いいねを外す', destroy_like_path(@movie), class: "like-link", method: :DELETE %></td>
-       <i class="fa fa-heart unlike-btn"></i>
-   <% else %>
-       <td><%= link_to 'いいね', create_like_path(@movie), class: "like-link", method: :create %></td>
-       <i class="fa fa-heart like-btn"></i>
-    <% end %>
-   </div>
-   <% end %>
+<tr id="post_<%= @movie.id %>">
+<%= render 'like',movie: @movie %> 
+</tr>
 
     <div class="comment">
        <%if user_signed_in?%>

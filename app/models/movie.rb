@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
   has_one_attached :movie
-  has_many :liked_users, through: :likes, source: :user
+  has_many :movie_liked_users, through: :movie_likes, source: :user
   has_many :comments, dependent: :destroy
   belongs_to :user
   has_many :movie_likes

@@ -37,7 +37,7 @@
         <% if post.images.attached? %>
         <% post.images.each do |image| %>
             <div class = 'images'>
-                <%= image_tag image %>
+                <%= image_tag image, class: "content-image" %>
             </div>
         <% end %>
         <% end %>
@@ -64,11 +64,7 @@
 
     </div>
     <div class="sidebar">
-     <div class="box">
+    <%= render 'shared/menu'%>
 
-     </div>
-     <div class="box">
-         
-    </div>
     </div>
 </div>
