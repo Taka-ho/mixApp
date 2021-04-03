@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   end
 
   create_table "movie_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "post_id", null: false
+    t.bigint "movie_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

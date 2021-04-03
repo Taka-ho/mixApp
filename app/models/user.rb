@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def movie_liked_by?(movie_id)
-    likes.where(movie_id: movie_id).exists?
+    movie_likes.where(movie_id: movie_id).exists?
   end
 
   with_options presence: true do
