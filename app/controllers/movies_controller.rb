@@ -14,8 +14,8 @@ class MoviesController < ApplicationController
             end
       
           def show
-              @comment = Comment.new     
-              @comments = @movie.comments.order(id: "DESC")
+              @movie_comment = MovieComment.new     
+              @movie_comments = @movie.movie_comments.order(id: "DESC")
           end
           
           

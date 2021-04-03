@@ -45,7 +45,7 @@
             </tr>
              <div class="comment">
                 <%if user_signed_in?%>
-                <h3>コメント件数: <%= movie.comments.count %></h3>
+                <h3>コメント件数: <%= movie.movie_comments.count %></h3>
                 <%= link_to "コメントする",  "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% else %>
                 <h3>コメント件数: <%= movie.comments.count %></h3>
