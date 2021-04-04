@@ -8,17 +8,19 @@ class Movie < ApplicationRecord
   with_options presence: true do
         validates :title
         validates :introduction
-        validates :movie
 
     end
 
-    validate :movies_presence
 
-    def movies_presence
+    validate :movie_presence
+
+    def movie_presence
     if movie.attached?
-      if !movie.blob.content_type.in?(%('movies/mp4 movies/mov'))
-        errors.add(:movies,'こちらで投稿できるのはmp4またはmovファイルです')
+      if !movie.content_type.in?(%('movie/mp4 movie/mov'))
+        errors.add(:movie,'こちらで投稿できるのはmp4またはmovファイルです')
      end
    end
  end
+
+
 end

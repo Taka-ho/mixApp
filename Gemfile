@@ -62,3 +62,5 @@ gem 'pry-rails'
 gem 'bootstrap'
 gem 'font-awesome-sass'
 gem 'mini_magick', '~> 4.8'
+gem 'active_storage_validations', '~> 0.8'
+

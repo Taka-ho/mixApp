@@ -31,7 +31,7 @@
 <p>タイトル: <%= @movie.title %></p> <br>
 <p>説明: <%= @movie.introduction %></p>
 <div class = 'video'>
-<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4", controls></video>
+<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4",type='movie/mov', controls></video>
 </div>
 </div>
 
