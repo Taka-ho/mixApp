@@ -13,7 +13,7 @@
    <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE %></td>
    <i class="fa fa-heart unlike-btn"></i>
 <% else %>
-   <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :create %></td>
+   <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post %></td>
    <i class="fa fa-heart like-btn"></i>
 <% end %>
 </div>
