@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-    
+
   has_one_attached :image
   has_many :posts
   has_many :likes
@@ -11,8 +11,7 @@ class User < ApplicationRecord
   has_many :movie_likes
   has_many :movies
   has_many :movie_comments
-  
- 
+
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end
@@ -27,19 +26,13 @@ class User < ApplicationRecord
     validates :enjoy_point
     validates :email
     validates :password, length: { minimum: 6 }
-
   end
 
   validate :image_presence
 
   def image_presence
-    if image.attached?
-      if !image.content_type.in?(%('image/jpeg image/png'))
-        errors.add(:image, 'にはjpegまたはpngファイルを添付してください')
-      end
+    if image.attached? && !image.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, 'にはjpegまたはpngファイルを添付してください')
     end
   end
-
-  
-  
 end
