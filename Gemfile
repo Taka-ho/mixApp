@@ -60,6 +60,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-rails'
 gem 'bootstrap'
+gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'mini_magick', '~> 4.8'
 gem 'active_storage_validations', '~> 0.8'

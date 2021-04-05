@@ -3,8 +3,9 @@ class MoviesController < ApplicationController
         before_action :find_movie, only: [:edit, :update, :show, :destroy]
       
           def index
-              @movies= Movie.all.order(id: "DESC")
+            @movies= Movie.all.order(id: "DESC")
               @movie_like = MovieLike.new
+
       
             end
       
@@ -22,6 +23,7 @@ class MoviesController < ApplicationController
           def create
             @movie = current_user
             @movie = Movie.create(movie_params)
+            binding.pry
             if @movie.save
               redirect_to movies_path,notice:'投稿に成功しました'
               else

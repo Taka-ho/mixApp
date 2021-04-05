@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
   has_many :movie_likes
   has_many :movie_comments, dependent: :destroy
   belongs_to :user
+  has_many :movie_likes
 
   with_options presence: true do
         validates :title
@@ -11,16 +12,17 @@ class Movie < ApplicationRecord
 
     end
 
-
     validate :movie_presence
 
     def movie_presence
-    if movie.attached?
-      if !movie.content_type.in?(%('movie/mp4 movie/mov'))
-        errors.add(:movie,'こちらで投稿できるのはmp4またはmovファイルです')
-     end
-   end
- end
-
-
+      if movie.attached?
+        if movie.content_type.in?(%('movie/mp4 movie/mov'))
+          errors.add(:movie, 'にはmp4またはmovファイルを添付してください')
+        end
+      else
+        errors.add(:movie, 'ファイルを添付してください')
+      end
+    end
+  
+    
 end
