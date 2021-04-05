@@ -4,7 +4,6 @@ class CreateLikes < ActiveRecord::Migration[6.0]
       t.bigint :post_id, null: false, foreign_key: true
       t.bigint :user_id, null: false, foreign_key: true
 
-
       t.timestamps
     end
   end
