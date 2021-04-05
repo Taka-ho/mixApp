@@ -9,7 +9,7 @@ class Movie < ApplicationRecord
   with_options presence: true do
         validates :title
         validates :introduction
-
+        validates :movie
     end
 
     validate :movie_presence
@@ -19,8 +19,6 @@ class Movie < ApplicationRecord
         if movie.content_type.in?(%('movie/mp4 movie/mov'))
           errors.add(:movie, 'にはmp4またはmovファイルを添付してください')
         end
-      else
-        errors.add(:movie, 'ファイルを添付してください')
       end
     end
   
