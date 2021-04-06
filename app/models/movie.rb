@@ -9,18 +9,7 @@ class Movie < ApplicationRecord
   with_options presence: true do
         validates :title
         validates :introduction
-        validates :movie
     end
+    validates :movie, presence: true, blob: { content_type: :video } # supported options: :image, :audio, :video, :text
 
-    validate :movie_presence
-
-    def movie_presence
-      if movie.attached?
-        if movie.content_type.in?(%('movie/mp4 movie/mov'))
-          errors.add(:movie, 'にはmp4またはmovファイルを添付してください')
-        end
-      end
-    end
-  
-    
-end
+  end
