@@ -40,9 +40,9 @@
        
          <div class="action-menu">
 
-            <tr id="movie_<%= movie.id %>">
-            <%= render 'like',movie: movie %> 
-            </tr>
+            <div id="movie_<%= movie.id %>">
+            <%= render 'movie',movie: movie %> 
+            </div>
              <div class="comment">
                 <%if user_signed_in?%>
                 <h3>コメント件数: <%= movie.movie_comments.count %></h3>
