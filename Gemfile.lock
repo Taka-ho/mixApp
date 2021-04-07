@@ -310,7 +310,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass
-  image_processing (~> 1.2)
+  image_processing
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

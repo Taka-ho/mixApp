@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :movie_likes
   has_many :movies
   has_many :movie_comments
+  has_many :blog
+  
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
