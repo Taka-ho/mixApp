@@ -10,6 +10,6 @@ class Movie < ApplicationRecord
         validates :title
         validates :introduction
     end
-    validates :movie, presence: true, blob: { content_type: :video } # supported options: :image, :audio, :video, :text
+    validates :movie, presence: true, blob: { content_type: :video } 
 
   end

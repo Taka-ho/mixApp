@@ -7,13 +7,6 @@ class Post < ApplicationRecord
 
   validates :content, presence: true
 
-  validate :images_presence
-
-  def images_presence
-    images.each do |image|
-      next unless images.attached?
-
-      errors.add(:images, 'こちらで投稿できるのはjpegまたはpngファイルです') unless image.blob.content_type.in?(%('images/jpeg images/png'))
-    end
+  validates :images, blob: { content_type: :image } 
   end
-end
+

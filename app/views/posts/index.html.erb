@@ -41,10 +41,11 @@
             </div>
         <% end %>
         <% end %>
+
          <div class="action-menu">
-         
-         <%= render 'like', post: post %>
-            
+         <div id="post_<%= post.id %>">
+         <%= render 'post', post: post %>
+        </div>
              <div class="comment">
                 <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>

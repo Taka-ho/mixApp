@@ -6,7 +6,7 @@
                 <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE,remote: true %></td>
                 <i class="fa fa-heart unlike-btn"></i>
             <% else %>
-                <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :create, remote: true %></td>
+                <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :post, remote: true %></td>
                 <i class="fa fa-heart like-btn"></i>
 
              <% end %>
