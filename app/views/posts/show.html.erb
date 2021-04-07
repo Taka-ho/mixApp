@@ -4,7 +4,7 @@
     <% if @post.user.image.attached? %>
     <%= image_tag @post.user.image %>
        <% else %>
-   <%= image_tag no.user.png %>
+   <%= image_tag 'no.user.png' %>
        <% end %>
     </div>
 
@@ -46,7 +46,7 @@
           <td><%= link_to 'いいねを外す', destroy_like_path(@post), class: "like-link", method: :DELETE %></td>
           <i class="fa fa-heart unlike-btn"></i>
         <% else %>
-          <td><%= link_to 'いいね', create_like_path(@post), class: "like-link", method: :create %></td>
+          <td><%= link_to 'いいね', create_like_path(@post), class: "like-link", method: :post %></td>
           <i class="fa fa-heart like-btn"></i>
         <% end %>
       </div>

@@ -51,8 +51,12 @@ Mac OS Big Sur (インテル版)
 
 - has_many :posts
 - has_many :likes
+- has_many :movie_likes
+- has_many :movie_comments
 - has_many :comments
 - has_many :blogs
+- has_many :blog_likes
+- has_many :blog_comments
   has_many :group_users
   has_many :groups, through: :group_users
 ## likes テーブル
@@ -63,6 +67,27 @@ Mac OS Big Sur (インテル版)
 | user_id  | references | null: false, foreign_key: true ,unique: true |
 
 - belongs_to :post
+- belongs_to :user
+
+## movies テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| title    | string | null: false |
+| introduction  | references | null: false, foreign_key: true ,unique: true |
+
+- belongs_to :user
+- belongs_to :movie_like
+
+
+## movie_likes テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| movie_id  | references | null: false, foreign_key: true ,unique: true |
+| user_id  | references | null: false, foreign_key: true ,unique: true |
+
+- belongs_to :movie
 - belongs_to :user
 
 ## posts テーブル
@@ -87,6 +112,18 @@ Mac OS Big Sur (インテル版)
 - belongs_to :post
 - belongs_to :user
 
+## movie_comments テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| movie_comment  | string | null: false  |
+| user     | references | null: false, foreign_key: true |
+
+### Association 
+
+- belongs_to :movie
+- belongs_to :user
+
 ## blogs テーブル
 
 | Column   | Type   | Options     |
@@ -95,6 +132,25 @@ Mac OS Big Sur (インテル版)
 | title    | string | null: false  |
 
 - belongs_to :user
+
+## blog_likes テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| blog_id  | references | null: false, foreign_key: true  |
+| user_id    | references | null: false, foreign_key: true  |
+
+- belongs_to :user
+
+## blog_comments テーブル
+
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| blog_id  | references | null: false, foreign_key: true |
+| user_id  | references | null: false, foreign_key: true |
+
+- belongs_to :user
+- belongs_to :blog
 
 ## groups テーブル
 

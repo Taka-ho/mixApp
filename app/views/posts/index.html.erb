@@ -37,14 +37,15 @@
         <% if post.images.attached? %>
         <% post.images.each do |image| %>
             <div class = 'images'>
-                <%= image_tag image %>
+                <%= image_tag image, class: "content-image" %>
             </div>
         <% end %>
         <% end %>
+
          <div class="action-menu">
-         <tr id="post_<%= post.id %>">
-         <%= render 'like', post: post %>
-            </tr>
+         <div id="post_<%= post.id %>">
+         <%= render 'post', post: post %>
+        </div>
              <div class="comment">
                 <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
@@ -64,11 +65,7 @@
 
     </div>
     <div class="sidebar">
-     <div class="box">
+    <%= render 'shared/menu'%>
 
-     </div>
-     <div class="box">
-         
-    </div>
     </div>
 </div>

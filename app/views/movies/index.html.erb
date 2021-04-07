@@ -7,7 +7,7 @@
              <% if movie.user.image.attached? %>
              <%= image_tag movie.user.image %>
                 <% else %>
-            <%= image_tag no.user.png %>
+            <%= image_tag 'no.user.png' %>
                 <% end %>
              </div>
 
@@ -33,38 +33,20 @@
        <div class="text">
        <p>タイトル: <%= movie.title %></p> <br>
        <p>説明: <%= movie.introduction %></p>
-       <div class = 'video'>
-       <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls></video>
+       <div class = 'movie'>
+       <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls></ｖ>
        </div>
     </div>
        
          <div class="action-menu">
-            <% if user_signed_in? %>
-            <div class="like">
-                <h3>いいね件数: <%= movie.likes.count %></h3>
-            </div>
-            <% else %>
-            <div class="like">
-                <h3>いいね件数: <%= movie.likes.count %></h3>
-            </div>
-            <% end %>
 
-            <% if user_signed_in? %>
-             <div class = 'like-button'>
-             <% if current_user.liked_by?(movie.id) %>
-                <td><%= link_to 'いいねを外す', destroy_like_path(movie), class: "like-link", method: :DELETE %></td>
-                <i class="fa fa-heart unlike-btn"></i>
-            <% else %>
-                <td><%= link_to 'いいね', create_like_path(movie), class: "like-link", method: :create %></td>
-                <i class="fa fa-heart like-btn"></i>
-             <% end %>
+            <div id="movie_<%= movie.id %>">
+            <%= render 'movie',movie: movie %> 
             </div>
-            <% end %>
-
              <div class="comment">
                 <%if user_signed_in?%>
-                <h3>コメント件数: <%= movie.comments.count %></h3>
-                <%= link_to "コメントする", "/movies/#{movie.id}", class: "comment-buttom" %>
+                <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+                <%= link_to "コメントする",  "/movies/#{movie.id}", class: "comment-buttom" %>
                 <% else %>
                 <h3>コメント件数: <%= movie.comments.count %></h3>
                 <%= link_to "コメントを見る", "/movies/#{movie.id}", class: "comment-buttom" %>
@@ -87,11 +69,6 @@
 
     </div>
     <div class="sidebar">
-     <div class="box">
-
-     </div>
-     <div class="box">
-         
-    </div>
+     <%= render 'shared/menu'%>
     </div>
 </div>

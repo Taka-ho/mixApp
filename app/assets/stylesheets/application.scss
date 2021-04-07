@@ -26,27 +26,45 @@ body{
    max-width: 100%;
  }
 
-#header{
-  display: flex;
-  align-items: right;
-  justify-content: space-between;
-}
 
-#header #nav{
-    list-style: none;
-    display: flex;
- } 
- 
-#header #nav li {
+ .logo{
   width: 140px;
   text-align: center;
   background-color: #333;
   height: 50px;
   line-height: 50px;
   margin-right: 2px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+ }
+
+ .logo a{
+  color: #fff;
+  text-decoration: none;
+
+ }
+
+#menu{
+
+}
+
+#menu #nav{
+
+ } 
+ 
+#menu #nav li {
+  list-style: none;
+  width: 140px;
+  text-align: center;
+  background-color: #333;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 2px;
+  margin-bottom: 10px;
+
 }
  
-#header #nav li a {
+#menu #nav li a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
@@ -136,11 +154,6 @@ padding: 10px;
    border: 2px solid #000;
    padding: 20px;
 }
-.box{
-    width: 100px;
-    height: 100px;
-    background-color: #000;
-    margin: 10px auto;
-}
+
 }
  

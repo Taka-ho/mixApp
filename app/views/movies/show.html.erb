@@ -4,7 +4,7 @@
     <% if @movie.user.image.attached? %>
     <%= image_tag @movie.user.image %>
        <% else %>
-   <%= image_tag no.user.png %>
+   <%= image_tag 'no.user.png' %>
        <% end %>
     </div>
 
@@ -31,39 +31,37 @@
 <p>タイトル: <%= @movie.title %></p> <br>
 <p>説明: <%= @movie.introduction %></p>
 <div class = 'video'>
-<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4", controls></video>
+<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4",type='movie/mov', controls></video>
 </div>
 </div>
 
 <div class="action-menu">
-   <% if user_signed_in? %>
-   <div class="like">
-       <h3>いいね件数: <%= @movie.likes.count %></h3>
-   </div>
-   <% else %>
-   <div class="like">
-       <h3>いいね件数: <%= @movie.likes.count %></h3>
-   </div>
-   <% end %>
-
-   <% if user_signed_in? %>
-    <div class = 'like-button'>
-    <% if current_user.liked_by?(@movie.id) %>
-       <td><%= link_to 'いいねを外す', destroy_like_path(@movie), class: "like-link", method: :DELETE %></td>
-       <i class="fa fa-heart unlike-btn"></i>
-   <% else %>
-       <td><%= link_to 'いいね', create_like_path(@movie), class: "like-link", method: :create %></td>
-       <i class="fa fa-heart like-btn"></i>
-    <% end %>
-   </div>
-   <% end %>
+<tr id="post_<%= @movie.id %>">
+<%= render 'like',movie: @movie %> 
+</tr>
 
     <div class="comment">
        <%if user_signed_in?%>
-       <h3>コメント件数: <%= @movie.comments.count %></h3>
+       <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
        <% else %>
-       <h3>コメント件数: <%= @movie.comments.count %></h3>
+       <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
        <% end %>
+       <%if user_signed_in?%>
+       <%= form_for [@movie, @movie_comment] do |f| %>
+         <%= f.text_area :movie_comment, size: "40x2" %>
+         <%= f.submit '送信', class: "btn-sm btn-primary" %>
+         <% @movie_comments.each do |movie_comment| %>
+            <div class="comment-user">
+              <tr>
+                <td><%= movie_comment.user.nickname %>:  </td>
+                <td><%= movie_comment.movie_comment %></td>
+                <td><%= link_to "削除", movie_movie_comment_path(@movie, movie_comment), method: :delete %></td>
+              </tr>
+            </div>
+          <% end %>
+       <% end %>
+       <% end %>
+
    </div>
        
    <div class="user-action">
