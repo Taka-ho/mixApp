@@ -36,9 +36,9 @@
 </div>
 
 <div class="action-menu">
-<tr id="post_<%= @movie.id %>">
-<%= render 'like',movie: @movie %> 
-</tr>
+<div id="movie_<%= @movie.id %>">
+<%= render @movie,movie: @movie %> 
+</div>
 
     <div class="comment">
        <%if user_signed_in?%>

@@ -14,7 +14,7 @@ class BlogsTest < ApplicationSystemTestCase
     visit blogs_url
     click_on "New Blog"
 
-    fill_in "Body", with: @blog.body
+    fill_in "Body", with: @blog.title
     click_on "Create Blog"
 
     assert_text "Blog was successfully created"
@@ -25,7 +25,7 @@ class BlogsTest < ApplicationSystemTestCase
     visit blogs_url
     click_on "Edit", match: :first
 
-    fill_in "Body", with: @blog.body
+    fill_in "Title", with: @blog.title
     click_on "Update Blog"
 
     assert_text "Blog was successfully updated"

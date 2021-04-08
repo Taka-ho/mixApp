@@ -40,16 +40,9 @@
 <div class="action-menu">
   <% if user_signed_in? %>
     <div class="like">
-      <h3>いいね件数: <%= @post.likes.count %></h3>
-      <div class='like-button'>
-        <% if current_user.liked_by?(@post.id) %>
-          <td><%= link_to 'いいねを外す', destroy_like_path(@post), class: "like-link", method: :DELETE %></td>
-          <i class="fa fa-heart unlike-btn"></i>
-        <% else %>
-          <td><%= link_to 'いいね', create_like_path(@post), class: "like-link", method: :post %></td>
-          <i class="fa fa-heart like-btn"></i>
-        <% end %>
-      </div>
+      <div id="post_<%= @post.id %>">
+      <%= render @post, post: @post %>
+     </div>
       <div class="comment">
         <%if user_signed_in?%>
           <%= form_for [@post, @comment] do |f| %>

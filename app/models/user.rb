@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :movie_likes
   has_many :movies
   has_many :movie_comments
-  has_many :blog
+  has_many :blogs
   
 
   def liked_by?(post_id)
