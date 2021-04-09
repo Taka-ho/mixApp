@@ -21,7 +21,7 @@
 
                 </div>
                 <div class="mania-histry">
-                    <%= "学習歴:#{post.user.mania_histry}年" %>
+                    <%= "趣味歴:#{post.user.mania_histry}年" %>
                 </div>
              </div>
              
@@ -51,12 +51,13 @@
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
              </div>
              <%if user_signed_in?%>
-             <% if current_user.id == post.user.id %>
-             <%= link_to "編集", edit_post_path(post) %>
-             <%= link_to "削除", post_path(post), method: :delete %>
-             <% end %>
-             <% end %>
- 
+              <div class = 'user-action'>
+                    <% if current_user.id == post.user.id %>
+                        <%= link_to "編集", edit_post_path(post) %>
+                        <%= link_to "削除", post_path(post), method: :delete %>
+                    <% end %>
+                <% end %>
+            </div>
          </div>
 
         </div>

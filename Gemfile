@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
@@ -24,7 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
 # Use Active Storage variant
-gem 'image_processing'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -65,4 +65,4 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activestorage-validator'
-gem 'rails-i18n'
+gem 'rails-i18n' 
