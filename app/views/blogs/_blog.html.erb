@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+      <div class="like">
+             <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+             <h3>コメント件数: <%= blog.comments.count %></h3>
+        <div class = 'like-button'>
+          <% if current_user.blog_liked_by?(blog.id) %>
+                <td><%= link_to 'いいねを外す', destroy_blog_path(blog), class: "like-link", method: :DELETE,remote: true %></td>
+                <i class="fa fa-heart unlike-btn"></i>
+            <% else %>
+                <td><%= link_to 'いいね', create_blog_path(blog), class: "like-link", method: :post, remote: true %></td>
+                <i class="fa fa-heart like-btn"></i>
+          <% end %>
+       </div>
+    </div>
+<% end %>

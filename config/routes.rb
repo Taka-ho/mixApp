@@ -12,5 +12,8 @@ Rails.application.routes.draw do
 
   post 'movie_like/:id', to: 'movie_likes#create', as: 'create_movie_like'
   delete 'movie_like/:id', to: 'movie_likes#destroy', as: 'destroy_movie_like'
+
+  post 'blog_like/:id', to: 'blog_likes#create', as: 'create_blog_like'
+  delete 'blog_like/:id', to: 'blog_likes#destroy', as: 'destroy_blog_like'
   root 'posts#index'
 end
