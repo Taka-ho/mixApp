@@ -3,7 +3,7 @@ class BlogCommentsController < ApplicationController
 
     def create
       @blog = Blog.find(params[:post_id])
-      @blog_comment = @post.comments.new(blog_comment_params)
+      @blog_comment = @post.blog_comments.new(blog_comment_params)
       @blog_comment.user_id = current_user.id
       if @blog_comment.save
         redirect_to request.referer
@@ -16,7 +16,7 @@ class BlogCommentsController < ApplicationController
   
     def destroy
       @blog = Blog.find(params[:post_id])
-      @blog_comment = Comment.find(params[:id])
+      @blog_comment = BlogComment.find(params[:id])
       @blog_comment.destroy
       redirect_to request.referer
     end

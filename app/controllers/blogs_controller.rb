@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[new update create edit update destroy]
+  before_action :authenticate_user!, only: %i[ update new create edit update destroy]
 
   # GET /blogs or /blogs.json
   def index
@@ -10,7 +10,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1 or /blogs/1.json
   def show
     @blog_comment = BlogComment.new
-    @blog_comments = @blog.blog_comments.order(id: 'DESC')
+    @blog_comments = @blog.blog_comment.order(id: 'DESC')
   end
 
   # GET /blogs/new
@@ -67,7 +67,7 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:body).merge(user_id: current_user.id)
+      params.require(:blog).permit(:title,:body).merge(user_id: current_user.id)
 
     end
     
