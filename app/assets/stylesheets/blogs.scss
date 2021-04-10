@@ -1,31 +1,150 @@
-// Place all the styles related to the blogs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.submit-block{
+#blogs-new{
+  form{
+    textarea{
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    .submit-block{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+        .button {
+            display       : inline-block;
+            border-radius : 5%;          /* 角丸       */
+            font-size     : 18pt;        /* 文字サイズ */
+            text-align    : center;      /* 文字位置   */
+            cursor        : pointer;     /* カーソル   */
+            padding       : 12px 12px;   /* 余白       */
+            background    : #333;     /* 背景色     */
+            color         : #ffffff;     /* 文字色     */
+            line-height   : 1em;         /* 1行の高さ  */
+            transition    : .3s;         /* なめらか変化 */
+            box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+            border        : 2px solid #333;    /* 枠の指定 */
+          }
+          .button:hover {
+            box-shadow    : none;        /* カーソル時の影消去 */
+            color         : #333;     /* 背景色     */
+            background    : #ffffff;     /* 文字色     */
+          }
+    }
+
+}
+}
+
+form{
+  textarea{
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  }
+  .submit-block{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+      .button {
+          display       : inline-block;
+          border-radius : 5%;          /* 角丸       */
+          font-size     : 18pt;        /* 文字サイズ */
+          text-align    : center;      /* 文字位置   */
+          cursor        : pointer;     /* カーソル   */
+          padding       : 12px 12px;   /* 余白       */
+          background    : #333;     /* 背景色     */
+          color         : #ffffff;     /* 文字色     */
+          line-height   : 1em;         /* 1行の高さ  */
+          transition    : .3s;         /* なめらか変化 */
+          box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+          border        : 2px solid #333;    /* 枠の指定 */
+        }
+        .button:hover {
+          box-shadow    : none;        /* カーソル時の影消去 */
+          color         : #333;     /* 背景色     */
+          background    : #ffffff;     /* 文字色     */
+        }
+  }
+
+}
+
+
+#blogs-show{
+.content{
+  border: 2px solid #000;
+  padding: 15px;
+  margin-bottom: 10px;
+   .user-about{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-    .button {
-        display       : inline-block;
-        border-radius : 5%;          /* 角丸       */
-        font-size     : 18pt;        /* 文字サイズ */
-        text-align    : center;      /* 文字位置   */
-        cursor        : pointer;     /* カーソル   */
-        padding       : 12px 12px;   /* 余白       */
-        background    : #333;     /* 背景色     */
-        color         : #ffffff;     /* 文字色     */
-        line-height   : 1em;         /* 1行の高さ  */
-        transition    : .3s;         /* なめらか変化 */
-        box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
-        border        : 2px solid #333;    /* 枠の指定 */
-      }
-      .button:hover {
-        box-shadow    : none;        /* カーソル時の影消去 */
-        color         : #333;     /* 背景色     */
-        background    : #ffffff;     /* 文字色     */
-      }
+
+    .image{ 
+       width: 10%; 
   }
-  body{
-    mergin:0;
+  
+  .profile{
+    margin-left: 10px;
+    
+    .name-history{
+      margin-bottom: 3px;
+        display: flex;
+        width: 100%;
+        .name{ 
+          font-weight: bold;
+         }
+       
+          .mania-histry{
+           margin-left: 20px;            
+          }
+       }
+
+    .enjoy-point{
+        width: 100%;
+        font-size: 13px;
+    }
   }
+}
+
+.content{
+    border: 2px solid #000;
+    padding: 15px;
+    margin-bottom: 10px;
+     .user-about{
+      display: flex;
+
+      .image{ 
+         width: 10%; 
+    }
+    
+    .profile{
+      margin-left: 10px;
+      
+      .name-history{
+        margin-bottom: 3px;
+          display: flex;
+          width: 100%;
+          .name{ 
+            font-weight: bold;
+           }
+         
+            .mania-histry{
+             margin-left: 20px;            
+            }
+         }
+ 
+      .enjoy-point{
+          width: 100%;
+          font-size: 13px;
+      }
+    }
+}
+}
+}
+}

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :blogs
+  resources :blogs do
+    resources :blog_comments, only: %i[create destroy]
+  end
   resources :movies do
     resources :movie_comments, only: %i[create destroy]
   end
