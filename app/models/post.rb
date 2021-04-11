@@ -8,5 +8,7 @@ class Post < ApplicationRecord
   validates :content,length: { maximum: 140 }, presence: true
 
   validates :images, blob: { content_type: :image } 
-  end
+
+
+end
 

@@ -25,7 +25,7 @@ gem 'devise'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-
+gem 'imagemagick'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
@@ -59,7 +59,7 @@ gem 'active_storage_validations', '~> 0.8'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick'
 gem 'pry-rails'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false

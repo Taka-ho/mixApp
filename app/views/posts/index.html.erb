@@ -32,13 +32,13 @@
        </div>
        
        <div class="text">
-        <h2><%= post.content %></h2>
+        <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメント&続きをよむ", "/posts/#{post.id}" %>
     </div>
         <% if post.images.attached? %>
         <% post.images.each do |image| %>
             <div class = 'images'>
-                <%= image_tag image, class: "content-image" %>
-            </div>
+                <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
+                </div>
         <% end %>
         <% end %>
 
@@ -47,7 +47,6 @@
          <%= render 'post', post: post %>
         </div>
              <div class="comment">
-                <h3>コメント件数: <%= post.comments.count %></h3>
                 <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
              </div>
              <%if user_signed_in?%>
@@ -56,17 +55,16 @@
                         <%= link_to "編集", edit_post_path(post) %>
                         <%= link_to "削除", post_path(post), method: :delete %>
                     <% end %>
+                </div>
                 <% end %>
             </div>
-         </div>
-
         </div>
         <% end %>
-
-
     </div>
     <div class="sidebar">
-    <%= render 'shared/menu'%>
-
-    </div>
+        <%= render 'shared/menu'%>       
+        </div>
 </div>
+
+
+    
