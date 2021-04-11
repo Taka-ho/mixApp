@@ -14,6 +14,7 @@ MixApp
 ユーザーログアウト
 ユーザーログイン
 ユーザー情報編集機能
+
 ```
 
 ```投稿機能
@@ -23,17 +24,14 @@ MixApp
 ```
 
 ```グループ機能
-グループをフォローしている人にはげんていでみれるこんてんつがある
-グループ同士のフォロー機能
-フォロー一覧表示機能
-
+そのユーザーのコンテンツをまとめてみることができる
 ```
 # 使用環境
-Docker
-Docker-compose 
-Ruby on rails6
-Ruby 2.6.5
-Mac OS Big Sur (インテル版)
+- Docker
+- Docker-compose 
+- Ruby on rails6
+- Ruby 2.6.5
+- Mac OS Big Sur (インテル版)
 
 # テーブル設計
 
@@ -128,9 +126,10 @@ Mac OS Big Sur (インテル版)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| blog_content  | text | null: false  |
+| body     | text | null: false  |
 | title    | string | null: false  |
 
+### Association 
 - belongs_to :user
 
 ## blog_likes テーブル
