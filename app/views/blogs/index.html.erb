@@ -43,7 +43,6 @@
        <%= render 'blog', blog: blog %>
       </div>
            <div class="comment">
-              <h3>コメント件数: <%= blog.blog_comment.count %></h3>
             </div>
            <%if user_signed_in?%>
             <div class = 'user-action'>

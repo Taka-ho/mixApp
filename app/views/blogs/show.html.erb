@@ -50,9 +50,10 @@
   <% @blog_comments.each do |blog_comment| %>
     <div class="comment-user">
       <tr>
+    
         <td><%= blog_comment.user.nickname %>:</td>
-        <td><%= blog_comment.comment %></td>
-        <td><%= link_to "削除", blog_comment_path(@blog, blog_comment), method: :delete %></td>
+        <td><%= blog_comment.blog_comment %></td>
+        <td><%= link_to "削除", blog_blog_comment_path(@blog, blog_comment), method: :delete %></td>
       </tr>
     </div>
   <% end %>

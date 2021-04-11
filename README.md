@@ -145,6 +145,7 @@ MixApp
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
+|blog_comment |string|null:false  |
 | blog_id  | references | null: false, foreign_key: true |
 | user_id  | references | null: false, foreign_key: true |
 
