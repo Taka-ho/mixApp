@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
   <div class="content-block">
       <% @blogs.each do |blog| %>
@@ -33,9 +32,9 @@
      
      <div class="text">
        <div class="title">
-        <p>タイトル: <%= blog.title %></p>
+        <p><%= blog.title %></p>
        </div>
-      <p><%= blog.body %>...<%= link_to "詳しく見る or コメント", "/blogs/#{blog.id}" %></p>
+       <p><%= blog.body %>...<%= link_to "詳しく見る or コメント", "/blogs/#{blog.id}" %></p>
   </div>
 
        <div class="action-menu">
@@ -43,6 +42,8 @@
        <%= render 'blog', blog: blog %>
       </div>
            <div class="comment">
+              <h3>コメント件数: <%= blog.blog_comment.count %></h3>
+                
             </div>
            <%if user_signed_in?%>
             <div class = 'user-action'>
