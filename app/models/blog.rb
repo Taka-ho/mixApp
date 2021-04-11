@@ -7,10 +7,7 @@ class Blog < ApplicationRecord
 
     with_options presence: true do
         validates :title
-        validates :body
+        validates :body,length: { minimum: 141 }
     end
-
-    def short_body
-        body[0, 9] + '...'
-      end
+    
 end

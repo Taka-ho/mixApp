@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
 
-  validates :content, presence: true
+  validates :content,length: { maximum: 140 }, presence: true
 
   validates :images, blob: { content_type: :image } 
   end
