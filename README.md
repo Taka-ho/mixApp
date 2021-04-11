@@ -46,7 +46,7 @@ MixApp
 | enjoy_point |string  | null: false |
 
 ### Association
-
+- has_one :profile
 - has_many :posts
 - has_many :likes
 - has_many :movie_likes
@@ -152,17 +152,19 @@ MixApp
 - belongs_to :user
 - belongs_to :blog
 
-## groups テーブル
+## profiles テーブル
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-|  name    | string | null: false |
-|  name    | index  | unique: true|
+|  blog    | string | null: false |
+|  movie   | string  | unique: true|
+|  post    | string  | unique: true|
 
 ### Association
-  has_many :group_users
-  has_many :users, through: :group_users
-  validates :name, presence: true, uniqueness: true
+  belongs_to :user
+  belongs_to :post
+  belongs_to :movie
+  belongs_to :blog
 
 ## group_user テーブル
 

@@ -9,4 +9,8 @@ class Blog < ApplicationRecord
         validates :title
         validates :body
     end
+
+    def short_body
+        body[0, 9] + '...'
+      end
 end
