@@ -3,7 +3,11 @@
         <ul id ='nav'>
         <%if user_signed_in?%>
             <li>
-               <%= link_to '新規投稿', new_post_path(@post) %>
+               <%= link_to 'つぶやき投稿', new_post_path(@post) %>
+            </li>
+            
+            <li>
+            <%= link_to 'つぶやき一覧', root_path %>
             </li>
 
             <li>    
@@ -17,9 +21,6 @@
 
             <li>
             <%= link_to '動画一覧', movies_path %>
-            </li>
-            <li>
-            <%= link_to 'つぶやき一覧', root_path %>
             </li>
 
             </li>
