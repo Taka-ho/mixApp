@@ -1,21 +1,11 @@
-<%if user_signed_in?%>
-            <h3>コメント件数: <%= movie.movie_comments.count %></h3>
-            <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-            <% else %>
-            <h3>コメント件数: <%= movie.movie_comments.count %></h3>
-            <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-<% end %>
-
 <div class="comment">
-    <% if user_signed_in? %>
             <div class = 'like-button'>
                 <% if current_user.movie_liked_by?(movie.id) %>
-                    <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE %></td>
+                    <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE,remote: true %></td>
                       <i class="fa fa-heart unlike-btn"></i>
         <% else %>
-                    <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post %></td>
+                    <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post,remote: true %></td>
                        <i class="fa fa-heart like-btn"></i>
-                <% end %>
             <% end %>    
         </div>
 </div>

@@ -43,12 +43,16 @@
       <div id="post_<%= @post.id %>">
       <%= render @post, post: @post %>
      </div>
+   <% end %>
+
+   <h3>いいね件数: <%= @movie.movie_likes.count %></h3>
+   <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
+
       <div class="comment">
         <%if user_signed_in?%>
           <%= form_for [@post, @comment] do |f| %>
             <%= f.text_area :comment, size: "40x2" %>
             <%= f.submit '送信', class: "btn-sm btn-primary" %>
-          <% end %>
         <% end %>
       </div>
     </div>

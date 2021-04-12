@@ -33,25 +33,25 @@
   </div>
 
   <div class="action-menu">
-    <div id="blog_<%= blog.id %>">
-      <%= render 'blog', blog: blog %>
-    </div>
-
-    <%if user_signed_in?%>
-      <div class='user-action'>
-        <% if current_user.id == blog.user.id %>
-          <%= link_to "編集", edit_blog_path(blog) %>
-          <%= link_to "削除", blog_path(blog), method: :delete %>
-        <% end %>
+      <div id="blog_<%= blog.id %>">
+          <%= render 'blog', blog: blog %>
       </div>
-    <% end %>
-  </div>
-      </div>
+  
+          <% if user_signed_in?%>
+              <div class='user-action'>
+                  <% if current_user.id == blog.user.id %>
+                      <%= link_to "編集", edit_blog_path(blog) %>
+                      <%= link_to "削除", blog_path(blog), method: :delete %>
+                  <% end %>
+                </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-
+    </div>
       <div class="sidebar">
-    <%= render 'shared/menu'%>
-</div> 
-    </div> 
+           <%= render 'shared/menu'%>
+      </div> 
+  </div> 
 </div>
 

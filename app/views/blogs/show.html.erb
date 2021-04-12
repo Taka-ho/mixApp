@@ -43,7 +43,9 @@
      <%= form_for [@blog, @blog_comment] do |f| %>
        <%= f.text_area :blog_comment, size: "40x2" %>
        <%= f.submit '送信', class: "btn-sm btn-primary" %>
-       <% @blog_comments.each do |blog_comment| %>
+       <% end %>
+
+       <% blog_comments.each do |blog_comment| %>
           <div class="comment-user">
             <tr>
               <td><%= blog_comment.user.nickname %>:  </td>
@@ -51,10 +53,12 @@
               <td><%= link_to "削除", blog_blog_comment_path(@blog, blog_comment), method: :delete %></td>
             </tr>
           </div>
-        <% end %>
      <% end %>
      <% end %>
-     <% end %>
+     <% else %>
+     <h3>コメント件数: <%= @blog.blog_comment.count %></h3>
+    <h3>いいね件数: <%= @blog.blog_likes.count %></h3>
+   <% end %>
 
 </div>
     

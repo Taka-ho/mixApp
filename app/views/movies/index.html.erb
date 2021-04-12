@@ -1,57 +1,58 @@
 <div class="content-wrapper">
-  <div class="content-block">
-      <% @movies.each do |movie| %>
-      <div class="content">
-       <div class="user-about">
-           <div class="image">
-           <% if movie.user.image.attached? %>
-           <%= image_tag movie.user.image %>
-              <% else %>
-          <%= image_tag 'no.user.png' %>
-              <% end %>
-           </div>
+    <div class="content-block">
+        <% @movies.each do |movie| %>
+        <div class="content">
+         <div class="user-about">
+             <div class="image">
+             <% if movie.user.image.attached? %>
+             <%= image_tag movie.user.image %>
+                <% else %>
+            <%= image_tag 'no.user.png' %>
+                <% end %>
+             </div>
 
-       <div class="profile">
-          <div class="name-history">
-              <div class="name">
-                  <%= movie.user.nickname %>
-              </div>
-              <div class="mania-histry">
-                  <%= "趣味歴:#{movie.user.mania_histry}年" %>
-              </div>
-           </div>
-           <div class="enjoy-point">
-           <%= "楽しいポイント#{movie.user.enjoy_point}"%>
-           </div>
+          <div class="profile">
+            <div class="name-history">
+                    <div class="name">
+                        <%= movie.user.nickname %>
+                    </div>
+                    <div class="mania-histry">
+                        <%= "趣味歴:#{movie.user.mania_histry}年" %>
+                    </div>
+             </div>
+             <div class="enjoy-point">
+             <%= "楽しいポイント#{movie.user.enjoy_point}"%>
+             </div>
+         </div>
        </div>
-     </div>
+
        <div class="text">
-           <div class="content-text">
-                <p>タイトル: <%= truncate(movie.title, length:15) %></p> <br>
-                <p>説明: <%= truncate(movie.introduction, length:15) %></p><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
-           </div>
-                <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls>
-      </div>
-
-    <div class="action-menu">
-        <div id="movie_<%= movie.id %>">
-            <%= render 'movie', movie: movie %>
+                 <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
+                 <h3><%= truncate(movie.introduction, length:15) %></h3>
+                <video src=<%= rails_blob_path(movie.movie) %> , controls>
         </div>
-
-    <% if user_signed_in? %>
-      <div class='user-action'>
-        <% if current_user.id == movie.user.id %>
-          <%= link_to "編集", edit_movie_path(movie) %>
-          <%= link_to "削除", movie_path(movie), method: :delete %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-      </div>
-      <% end %>
-
-        <div class="sidebar">
-            <%= render 'shared/menu'%>
+        
+        <div class="action-menu">
+        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+        <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+                <% if user_signed_in?%>
+                    <div class='user-action'>
+                        <% if current_user.id == movie.user.id %>
+                            <%= link_to "編集", edit_movie_path(movie) %>
+                            <%= link_to "削除", movie_path(movie), method: :delete %>
+                        <% end %>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+            <div class="sidebar">
+                 <%= render 'shared/menu'%>
+            </div> 
         </div> 
-    </div>
-</div>
+      </div>
+                        
+                        
+
+    

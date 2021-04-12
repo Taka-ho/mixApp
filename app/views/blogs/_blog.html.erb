@@ -1,17 +1,4 @@
 <% if user_signed_in? %>
-<div class="like">
-<h3>コメント件数: <%= blog.blog_comment.count %></h3>
-    <h3>いいね件数: <%= blog.blog_likes.count %></h3>
-</div>
-<% else %>
-<div class="like">
-<h3>コメント件数: <%= blog.blog_comment.count %></h3>
-    <h3>いいね件数: <%= blog.blog_likes.count %></h3>
-</div>
-<% end %>
-
-
-<% if user_signed_in? %>
       <div class="like">
         
         <div class = 'like-button'>
