@@ -14,48 +14,44 @@
        <div class="profile">
           <div class="name-history">
               <div class="name">
-
-              <%= blog.user.nickname %>
-
-
+                  <%= blog.user.nickname %>
               </div>
               <div class="mania-histry">
                   <%= "趣味歴:#{blog.user.mania_histry}年" %>
               </div>
            </div>
-           
            <div class="enjoy-point">
            <%= "楽しいポイント#{blog.user.enjoy_point}"%>
            </div>
        </div>
      </div>
-     
      <div class="text">
-       <div class="title">
-        <h3>タイトル: <%= blog.title %></h3>
-       </div>
-       <h2><%= blog.body %></h2>
-
+            <div class="title">
+                <h3>タイトル: <%= blog.title %></h3>
+            </div>
+       <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
   </div>
 
-       <div class="action-menu">
-       <div id="blog_<%= blog.id %>">
-       <%= render 'blog', blog: blog %>
-      </div>
+  <div class="action-menu">
+    <div id="blog_<%= blog.id %>">
+      <%= render 'blog', blog: blog %>
+    </div>
 
-           <%if user_signed_in?%>
-            <div class = 'user-action'>
-                  <% if current_user.id == blog.user.id && user_signed_in? %>
-                      <%= link_to "編集", edit_blog_path(blog) %>
-                      <%= link_to "削除", blog_path(blog), method: :delete %>
-                  <% end %>
-              <% end %>
-          </div>
-       </div>
+    <%if user_signed_in?%>
+      <div class='user-action'>
+        <% if current_user.id == blog.user.id %>
+          <%= link_to "編集", edit_blog_path(blog) %>
+          <%= link_to "削除", blog_path(blog), method: :delete %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
       </div>
       <% end %>
+
       <div class="sidebar">
-      <%= render 'shared/menu'%>
-      </div>
-    </div>
+    <%= render 'shared/menu'%>
+</div> 
+    </div> 
 </div>
+

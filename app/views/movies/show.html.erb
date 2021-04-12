@@ -28,24 +28,19 @@
 </div>
 
 <div class="text">
-<p>タイトル: <%= @movie.title %></p> <br>
-<p>説明: <%= @movie.introduction %></p>
-<div class = 'video'>
-<video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4",type='movie/mov', controls></video>
-</div>
+  <p>タイトル: <%= @movie.title %></p> <br>
+  <p>説明: <%= @movie.introduction %></p>
+      <div class = 'video'>
+        <video src=<%= rails_blob_path(@movie.movie) %> type="movie/mp4",type='movie/mov', controls></video>
+      </div>
 </div>
 
-<div class="action-menu">
-<div id="movie_<%= @movie.id %>">
-<%= render @movie,movie: @movie %> 
-</div>
+    <div class="action-menu">
+      <div id="movie_<%= @movie.id %>">
+          <%= render @movie,movie: @movie %> 
+    </div>
 
     <div class="comment">
-       <%if user_signed_in?%>
-       <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
-       <% else %>
-       <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
-       <% end %>
        <%if user_signed_in?%>
        <%= form_for [@movie, @movie_comment] do |f| %>
          <%= f.text_area :movie_comment, size: "40x2" %>
@@ -65,12 +60,12 @@
    </div>
        
    <div class="user-action">
-   <%if user_signed_in?%>
-   <% if current_user.id == @movie.user.id || user_signed_in %>
-   <%= link_to "編集", edit_movie_path(@movie) %>
-   <%= link_to "削除", movie_path(@movie), method: :delete %>
-   <% end %>
-   <% end %>
+      <%if user_signed_in?%>
+        <% if current_user.id == @movie.user.id || user_signed_in %>
+          <%= link_to "編集", edit_movie_path(@movie) %>
+            <%= link_to "削除", movie_path(@movie), method: :delete %>
+        <% end %>
+      <% end %>
    </div>
 </div>
 

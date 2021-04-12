@@ -1,5 +1,4 @@
 <div id="menu">
-      <div class="menu-link">
         <ul id ='nav'>
         <%if user_signed_in?%>
             <li>
@@ -23,7 +22,6 @@
             <%= link_to '動画一覧', movies_path %>
             </li>
 
-            </li>
             <li>
             <%= link_to 'ブログ一覧', blogs_path %>
             </li>
@@ -31,9 +29,7 @@
             <li>
             <%= link_to 'ブログ投稿', new_blog_path %>
             </li>
-            
             <% else %>
-            
             <li>    
             <%= link_to 'ログイン', new_user_session_path %>
         </li>
@@ -54,5 +50,4 @@
 
             
         </ul>
-    </div>
   </div>

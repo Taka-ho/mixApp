@@ -9,5 +9,6 @@ class Blog < ApplicationRecord
         validates :title
         validates :body,length: { minimum: 141 }
     end
-    
+
+
 end

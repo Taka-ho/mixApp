@@ -11,52 +11,45 @@
             <%= image_tag 'no.user.png' %>
                 <% end %>
              </div>
-
          <div class="profile">
             <div class="name-history">
                 <div class="name">
-
                 <%= post.user.nickname %>
-
-
                 </div>
                 <div class="mania-histry">
                     <%= "趣味歴:#{post.user.mania_histry}年" %>
                 </div>
              </div>
-             
              <div class="enjoy-point">
              <%= "楽しいポイント#{post.user.enjoy_point}"%>
              </div>
          </div>
        </div>
-       
        <div class="text">
-        <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメント&続きをよむ", "/posts/#{post.id}" %>
+        <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
     </div>
         <% if post.images.attached? %>
-        <% post.images.each do |image| %>
-            <div class = 'images'>
-                <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
+            <% post.images.each do |image| %>
+                <div class = 'images'>
+                    <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
                 </div>
-        <% end %>
+            <% end %>
         <% end %>
 
          <div class="action-menu">
-         <div id="post_<%= post.id %>">
-         <%= render 'post', post: post %>
-        </div>
-             <div class="comment">
-                <%= link_to "コメントする", "/posts/#{post.id}", class: "comment-buttom" %>
-             </div>
-             <%if user_signed_in?%>
-              <div class = 'user-action'>
-                    <% if current_user.id == post.user.id %>
-                        <%= link_to "編集", edit_post_path(post) %>
-                        <%= link_to "削除", post_path(post), method: :delete %>
-                    <% end %>
+            <div id="post_<%= post.id %>">
+                <%= render 'post', post: post %>
+            </div>
+                <div class="comment">
                 </div>
-                <% end %>
+                    <%if user_signed_in?%>
+                        <div class = 'user-action'>
+                            <% if current_user.id == post.user.id %>
+                                 <%= link_to "編集", edit_post_path(post) %>
+                                 <%= link_to "削除", post_path(post), method: :delete %>
+                             <% end %>
+            </div>
+                    <% end %>
             </div>
         </div>
         <% end %>
