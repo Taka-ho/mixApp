@@ -17,7 +17,7 @@
 
        </div>
        <div class="mania-histry">
-           <%= "学習歴:#{@post.user.mania_histry}年" %>
+           <%= "趣味歴:#{@post.user.mania_histry}年" %>
        </div>
     </div>
     
@@ -28,34 +28,30 @@
 </div>
 
 <div class="text">
-<p><%= @post.content %></p>
+  <p><%= @post.content %></p>
 </div>
 <% if @post.images.attached? %>
-<% @post.images.each do |image| %>
-   <div class = 'images'>
-       <%= image_tag image %>
-   </div>
-<% end %>
+  <% @post.images.each do |image| %>
+      <div class = 'images'>
+         <%= image_tag image %>
+      </div>
+  <% end %>
 <% end %>
 <div class="action-menu">
+
   <% if user_signed_in? %>
-    <div class="like">
-      <h3>いいね件数: <%= @post.likes.count %></h3>
-      <div class='like-button'>
-        <% if current_user.liked_by?(@post.id) %>
-          <td><%= link_to 'いいねを外す', destroy_like_path(@post), class: "like-link", method: :DELETE %></td>
-          <i class="fa fa-heart unlike-btn"></i>
-        <% else %>
-          <td><%= link_to 'いいね', create_like_path(@post), class: "like-link", method: :post %></td>
-          <i class="fa fa-heart like-btn"></i>
-        <% end %>
-      </div>
+      <div class="like">
+          <div id="post_<%= @post.id %>">
+             <%= render @post, post: @post %>
+          </div>
+     <% end %>
+     <h3>コメント件数: <%= @post.comments.count %></h3>
+
       <div class="comment">
         <%if user_signed_in?%>
           <%= form_for [@post, @comment] do |f| %>
             <%= f.text_area :comment, size: "40x2" %>
             <%= f.submit '送信', class: "btn-sm btn-primary" %>
-          <% end %>
         <% end %>
       </div>
     </div>

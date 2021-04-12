@@ -11,64 +11,51 @@
                 <% end %>
              </div>
 
-         <div class="profile">
+          <div class="profile">
             <div class="name-history">
-                <div class="name">
-
-                <%= movie.user.nickname %>
-
-
-                </div>
-                <div class="mania-histry">
-                    <%= "学習歴:#{movie.user.mania_histry}年" %>
-                </div>
+                    <div class="name">
+                        <%= movie.user.nickname %>
+                    </div>
+                    <div class="mania-histry">
+                        <%= "趣味歴:#{movie.user.mania_histry}年" %>
+                    </div>
              </div>
-             
              <div class="enjoy-point">
              <%= "楽しいポイント#{movie.user.enjoy_point}"%>
              </div>
          </div>
        </div>
-       
+
        <div class="text">
-       <p>タイトル: <%= movie.title %></p> <br>
-       <p>説明: <%= movie.introduction %></p>
-       <div class = 'movie'>
-       <video src=<%= rails_blob_path(movie.movie) %> type="movie/mp4", controls></ｖ>
-       </div>
-    </div>
-       
-         <div class="action-menu">
-
-            <div id="movie_<%= movie.id %>">
-            <%= render 'movie',movie: movie %> 
-            </div>
-             <div class="comment">
-                <%if user_signed_in?%>
-                <h3>コメント件数: <%= movie.movie_comments.count %></h3>
-                <%= link_to "コメントする",  "/movies/#{movie.id}", class: "comment-buttom" %>
-                <% else %>
-                <h3>コメント件数: <%= movie.comments.count %></h3>
-                <%= link_to "コメントを見る", "/movies/#{movie.id}", class: "comment-buttom" %>
-                <% end %>
-            </div>
-                
-            <div class="user-action">
-            <%if user_signed_in?%>
-            <% if current_user.id == movie.user.id || user_signed_in %>
-            <%= link_to "編集", edit_movie_path(movie) %>
-            <%= link_to "削除", movie_path(movie), method: :delete %>
-            <% end %>
-            <% end %>
-            </div>
-         </div>
-
+                 <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
+                 <h3><%= truncate(movie.introduction, length:15) %></h3>
+                <video src=<%= rails_blob_path(movie.movie) %> , controls>
         </div>
-        <% end %>
-
-
+        
+        <div class="action-menu">
+        <div id="movie_<%= movie.id %>">
+        <%= render 'movie', movie: movie %>
     </div>
-    <div class="sidebar">
-     <%= render 'shared/menu'%>
-    </div>
-</div>
+        <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+
+                <% if user_signed_in?%>
+                    <div class='user-action'>
+                        <% if current_user.id == movie.user.id %>
+                            <%= link_to "編集", edit_movie_path(movie) %>
+                            <%= link_to "削除", movie_path(movie), method: :delete %>
+                        <% end %>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+            <div class="sidebar">
+                 <%= render 'shared/menu'%>
+            </div> 
+        </div> 
+      </div>
+                        
+                        
+
+    

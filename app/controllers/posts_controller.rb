@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[edit update show destroy]
 
   def index
-    @posts = Post.all.order(id: 'DESC')
+    @posts = Post.includes(:user).order(id: 'DESC')
     @like = Like.new
   end
 

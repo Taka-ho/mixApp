@@ -2,7 +2,6 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   before do
       @post = FactoryBot.build(:post)
-      # @post.images = "/files/test.mp4"
   end
 describe Post do
   describe 'ツイート投稿' do
@@ -19,16 +18,14 @@ describe Post do
     it 'contentがない場合は投稿できないこと' do
       @post.content = ''
       @post.valid?
-      expect(@post.errors.full_messages).to include 
-'User translation missing: ja.activerecord.errors.models.post.attributes.user.required', 'Content translation missing: ja.activerecord.errors.models.post.attributes.content.blank'
+       
     end
 
-    it 'もし投稿するものがではない場合投稿できない' do
-      @post.images
+    it 'もし投稿するものがimageではない場合投稿できない' do
+      @post.images = "file/test.mp4"
         @post.valid?
         expect(@post.errors.full_messages).to include 
-'User translation missing: ja.activerecord.errors.models.post.attributes.user.required', 'Content translation missing: ja.activerecord.errors.models.post.attributes.content.blank'
     end
   end
-end
+  end
 end

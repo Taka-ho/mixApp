@@ -10,7 +10,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :movie_likes
   has_many :movies
-  has_many :movie_comments
+  has_many :movie_comments, dependent: :destroy
+  has_many :blogs, dependent: :destroy
+  has_many :blog_likes
+  has_many :blog_comments, dependent: :destroy
+
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
@@ -18,6 +22,10 @@ class User < ApplicationRecord
 
   def movie_liked_by?(movie_id)
     movie_likes.where(movie_id: movie_id).exists?
+  end
+
+  def blog_liked_by?(blog_id)
+    blog_likes.where(blog_id: blog_id).exists?
   end
 
   with_options presence: true do

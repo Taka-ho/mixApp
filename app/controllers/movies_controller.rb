@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: %i[edit update show destroy]
 
   def index
-    @movies = Movie.all.order(id: 'DESC')
+    @movies = Movie.includes(:user).order(id: 'DESC')
     @movie_like = MovieLike.new
   end
 

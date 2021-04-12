@@ -14,6 +14,7 @@ MixApp
 ユーザーログアウト
 ユーザーログイン
 ユーザー情報編集機能
+
 ```
 
 ```投稿機能
@@ -23,17 +24,14 @@ MixApp
 ```
 
 ```グループ機能
-グループをフォローしている人にはげんていでみれるこんてんつがある
-グループ同士のフォロー機能
-フォロー一覧表示機能
-
+そのユーザーのコンテンツをまとめてみることができる
 ```
 # 使用環境
-Docker
-Docker-compose 
-Ruby on rails6
-Ruby 2.6.5
-Mac OS Big Sur (インテル版)
+- Docker
+- Docker-compose 
+- Ruby on rails6
+- Ruby 2.6.5
+- Mac OS Big Sur (インテル版)
 
 # テーブル設計
 
@@ -48,7 +46,7 @@ Mac OS Big Sur (インテル版)
 | enjoy_point |string  | null: false |
 
 ### Association
-
+- has_one :profile
 - has_many :posts
 - has_many :likes
 - has_many :movie_likes
@@ -128,9 +126,10 @@ Mac OS Big Sur (インテル版)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| blog_content  | text | null: false  |
+| body     | text | null: false  |
 | title    | string | null: false  |
 
+### Association 
 - belongs_to :user
 
 ## blog_likes テーブル
@@ -146,23 +145,26 @@ Mac OS Big Sur (インテル版)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
+|blog_comment |string|null:false  |
 | blog_id  | references | null: false, foreign_key: true |
 | user_id  | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :blog
 
-## groups テーブル
+## profiles テーブル
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-|  name    | string | null: false |
-|  name    | index  | unique: true|
+|  blog    | string | null: false |
+|  movie   | string  | unique: true|
+|  post    | string  | unique: true|
 
 ### Association
-  has_many :group_users
-  has_many :users, through: :group_users
-  validates :name, presence: true, uniqueness: true
+  belongs_to :user
+  belongs_to :post
+  belongs_to :movie
+  belongs_to :blog
 
 ## group_user テーブル
 

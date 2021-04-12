@@ -2,7 +2,6 @@ class MovieCommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[edit show destroy]
   before_action :movie_params, only: %i[create destroy]
   def create
-    @movie = Movie.find(params[:movie_id])
     @movie_comment = @movie.movie_comments.new(comment_params)
     @movie_comment.user_id = current_user.id
     if @movie_comment.save
@@ -14,7 +13,6 @@ class MovieCommentsController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:movie_id])
     @movie_comment = MovieComment.find(params[:id])
     @movie_comment.destroy
     redirect_to request.referer
