@@ -1,7 +1,13 @@
 <% if user_signed_in? %>
+    <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+
+<% else %>
+    <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+<% end %>
+
+<% if user_signed_in? %>
       <div class="like">
-        
-        <div class = 'like-button'>
+       <div class = 'like-button'>
           <% if current_user.blog_liked_by?(blog.id) %>
                 <td><%= link_to 'いいねを外す', destroy_blog_like_path(blog), class: "like-link", method: :DELETE,remote: true %></td>
                 <i class="fa fa-heart unlike-btn"></i>

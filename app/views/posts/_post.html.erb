@@ -1,4 +1,11 @@
 <% if user_signed_in? %>
+    <h3>いいね件数: <%= post.likes.count %></h3>
+
+<% else %>
+    <h3>いいね件数: <%= post.likes.count %></h3>
+<% end %>
+
+<% if user_signed_in? %>
       <div class="like">
         <div class = 'like-button'>
           <% if current_user.liked_by?(post.id) %>

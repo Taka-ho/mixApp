@@ -28,25 +28,24 @@
 </div>
 
 <div class="text">
-<p><%= @post.content %></p>
+  <p><%= @post.content %></p>
 </div>
 <% if @post.images.attached? %>
-<% @post.images.each do |image| %>
-   <div class = 'images'>
-       <%= image_tag image %>
-   </div>
-<% end %>
+  <% @post.images.each do |image| %>
+      <div class = 'images'>
+         <%= image_tag image %>
+      </div>
+  <% end %>
 <% end %>
 <div class="action-menu">
-  <% if user_signed_in? %>
-    <div class="like">
-      <div id="post_<%= @post.id %>">
-      <%= render @post, post: @post %>
-     </div>
-   <% end %>
 
-   <h3>いいね件数: <%= @movie.movie_likes.count %></h3>
-   <h3>コメント件数: <%= @movie.movie_comments.count %></h3>
+  <% if user_signed_in? %>
+      <div class="like">
+          <div id="post_<%= @post.id %>">
+             <%= render @post, post: @post %>
+          </div>
+     <% end %>
+     <h3>コメント件数: <%= @post.comments.count %></h3>
 
       <div class="comment">
         <%if user_signed_in?%>

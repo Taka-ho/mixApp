@@ -38,6 +38,8 @@
       <%= render @blog, blog: @blog %>
      </div>
 
+     <h3>コメント件数: <%= @blog.blog_comment.count %></h3>
+
      <div class="comment">
      <%if user_signed_in?%>
      <%= form_for [@blog, @blog_comment] do |f| %>
@@ -45,7 +47,9 @@
        <%= f.submit '送信', class: "btn-sm btn-primary" %>
        <% end %>
 
-       <% blog_comments.each do |blog_comment| %>
+
+
+       <% @blog_comments.each do |blog_comment| %>
           <div class="comment-user">
             <tr>
               <td><%= blog_comment.user.nickname %>:  </td>
@@ -57,7 +61,6 @@
      <% end %>
      <% else %>
      <h3>コメント件数: <%= @blog.blog_comment.count %></h3>
-    <h3>いいね件数: <%= @blog.blog_likes.count %></h3>
    <% end %>
 
 </div>

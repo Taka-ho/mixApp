@@ -33,8 +33,11 @@
         </div>
         
         <div class="action-menu">
-        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+        <div id="movie_<%= movie.id %>">
+        <%= render 'movie', movie: movie %>
+    </div>
         <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+
                 <% if user_signed_in?%>
                     <div class='user-action'>
                         <% if current_user.id == movie.user.id %>
