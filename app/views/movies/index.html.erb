@@ -29,7 +29,7 @@
        <div class="text">
                  <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
                  <h3><%= truncate(movie.introduction, length:15) %></h3>
-                <video src=<%= rails_blob_path(movie.movie) %> , controls>
+                <video src=<%= rails_blob_path(movie.movie) %> ,type='movie/mp4 movie/mov', controls>
         </div>
         
         <div class="action-menu">
