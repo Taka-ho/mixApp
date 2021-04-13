@@ -1,4 +1,4 @@
-#blogs-new,#blogs-edit{
+#blogs-new,#blogs-edit,#blogs-create{
   form{
       textarea{
           width: 100%;
@@ -38,7 +38,7 @@
   }
 }
 
-#movies-show{
+#blogs-show{
   .content{
       border: 2px solid #000;
       padding: 15px;
