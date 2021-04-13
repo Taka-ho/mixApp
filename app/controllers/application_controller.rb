@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[nickname mania_histry enjoy_point image])
   end
 
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
 end

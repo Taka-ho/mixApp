@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :image
+  has_one :profile
   has_many :posts
   has_many :likes
   has_many :comments, dependent: :destroy
@@ -14,7 +15,6 @@ class User < ApplicationRecord
   has_many :blogs, dependent: :destroy
   has_many :blog_likes
   has_many :blog_comments, dependent: :destroy
-
 
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
