@@ -41,6 +41,7 @@
          <div id="post_<%= post.id %>">
                 <%= render 'post', post: post %>
             </div>
+            <h3>コメント件数: <%= post.comments.count %></h3>
                 <div class="comment">
                 </div>
                     <%if user_signed_in?%>
