@@ -23,13 +23,18 @@
                             </div>
 
                     </div>
+                    <div class="user-content">
+                <div class="user-movie">
                     <% @user.movies.each do |user| %>
                         <div class="text">
-                        <h2><%= truncate(user.movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
-                        <h3><%= truncate(user.movie.introduction, length:15) %></h3>
-                       <video src=<%= rails_blob_path(user.movie.movie) %> ,type='movie/mp4 movie/mov', controls>
-               </div>
-                 <% end %>
+                            <h2><%= truncate(user.movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
+                            <h3><%= truncate(user.movie.introduction, length:15) %></h3>
+                            <video src=<%= rails_blob_path(user.movie.movie) %> ,type='movie/mp4 movie/mov', controls>
+                        </div>
+                        <% end %>
+                </div>
+                <div class="user-post">
+
                  <% @user.posts.each do |user| %>
                     <div class="text">
                     <h2><%= truncate(user.post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
@@ -42,6 +47,8 @@
                         <% end %>
                     <% end %>
                     <% end %>
+                </div>
+                <div class="user-blog">
                     <% @user.blogs.each do |user| %>
                         <div class="text">
             <div class="title">
@@ -51,8 +58,8 @@
   </div>
                     <% end %>
 
-
-
+                </div>
+                </div>
             </div>
         </div>
     </div>
