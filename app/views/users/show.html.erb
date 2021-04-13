@@ -52,9 +52,9 @@
                     <% @user.blogs.each do |user| %>
                         <div class="text">
             <div class="title">
-                <h3>タイトル: <%= blog.title %></h3>
+                <h3>タイトル: <%= user.blog.title %></h3>
             </div>
-       <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
+       <h2><%= truncate(strip_tags(user.blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
   </div>
                     <% end %>
 
