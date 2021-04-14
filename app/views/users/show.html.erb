@@ -46,6 +46,7 @@
                             </ul>
                             <div class="tabContentList">
                                 <article class="tabContent active" id="content_1">
+                                <%if @user.posts.exists? %>
                                     <% @posts.each do |post| %>
                                     <div class="content">
                                      <div class="user-about">
@@ -120,8 +121,13 @@
                                             </div>
                                         </div>
                                     <% end %>
+                                    <% else %>
+                                        <h1>投稿はありません</h1>
+                                    <% end %>
+
                                 </article>
                                 <article class="tabContent" id="content_2">
+                                <% if @user.movies.exists? %>
                                     <% @movies.each do |movie| %>
                                     <div class="content">
                                      <div class="user-about">
@@ -188,9 +194,12 @@
                                             </div>
                                           </div>
                                         <% end %>
+                                        <% else %>
+                                        <h1>投稿はありません</h1>
+                                        <% end %>
                                 </article>
                                 <article class="tabContent" id="content_3">
-                                    <%# ブログの表示%>
+                                    <% if @user.blogs.exists? %>
                                     <% @blogs.each do |blog| %>
                                     <div class="content">
                                            <div class="user-about">
@@ -261,7 +270,9 @@
                                           </div>
                                       </div>
                                     <% end %>
-
+                                    <% else %>
+                                    <h1>投稿はありません</h1>
+                                    <% end %>
                                 </article>
                             </div>
                         </secton>
