@@ -36,9 +36,8 @@
                 <div id="blog_<%= blog.id %>">
                     <%= render 'blog', blog: blog %>
                 </div>
-    
-        
                     <h3>コメント件数: <%= blog.blog_comment.count %></h3>
+                    <%= link_to "この方について", blog_user_path(blog,blog.user.id) %>
 
                 <% if user_signed_in?%>
                     <div class='user-action'>

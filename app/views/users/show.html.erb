@@ -156,7 +156,24 @@
                                     
                                     <div class="action-menu">
                                     <div id="movie_<%= movie.id %>">
-                                    <%= render 'movie', movie: movie %>
+                                        <%if user_signed_in?%>
+                                        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+                                        
+                                        <% else %>
+                                        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+                                        
+                                        <% end %>
+                                        <div class="comment">
+                                              <div class = 'like-button'>
+                                                <% if current_user.movie_liked_by?(movie.id) %>
+                                                         <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE,remote: true %></td>
+                                                    <i class="fa fa-heart unlike-btn"></i>
+                                                <% else %>
+                                                        <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post,remote: true %></td>
+                                                    <i class="fa fa-heart like-btn"></i>
+                                                 <% end %>    
+                                            </div>
+                                        </div>
                                 </div>
                                     <h3>コメント件数: <%= movie.movie_comments.count %></h3>
                             
@@ -208,7 +225,26 @@
                               
                                         <div class="action-menu">
                                               <div id="blog_<%= blog.id %>">
-                                                  <%= render 'blog', blog: blog %>
+                                                <% if user_signed_in? %>
+                                                <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                            
+                                            <% else %>
+                                                <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                            <% end %>
+                                            
+                                            <% if user_signed_in? %>
+                                                  <div class="like">
+                                                   <div class = 'like-button'>
+                                                      <% if current_user.blog_liked_by?(blog.id) %>
+                                                            <td><%= link_to 'いいねを外す', destroy_blog_like_path(blog), class: "like-link", method: :DELETE,remote: true %></td>
+                                                            <i class="fa fa-heart unlike-btn"></i>
+                                                        <% else %>
+                                                            <td><%= link_to 'いいね', create_blog_like_path(blog), class: "like-link", method: :post, remote: true %></td>
+                                                            <i class="fa fa-heart like-btn"></i>
+                                                      <% end %>
+                                                   </div>
+                                                </div>
+                                            <% end %>
                                               </div>
                                   
                                       

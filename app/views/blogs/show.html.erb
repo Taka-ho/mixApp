@@ -39,6 +39,7 @@
      </div>
 
      <h3>コメント件数: <%= @blog.blog_comment.count %></h3>
+     <%= link_to "この方について", blog_user_path(blog,blog.user.id) %>
 
      <div class="comment">
      <%if user_signed_in?%>

@@ -37,6 +37,7 @@
         <%= render 'movie', movie: movie %>
     </div>
         <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+        <%= link_to "この方について", movie_user_path(movie,movie.user.id) %>
 
                 <% if user_signed_in?%>
                     <div class='user-action'>
