@@ -23,8 +23,8 @@ MixApp
 ユーザー投稿機能(ブログ)
 ```
 
-```グループ機能
-そのユーザーのコンテンツをまとめてみることができる
+```プロフィール機能
+ユーザー別の投稿一覧ページになっていてそのユーザーが投稿した全てのコンテンツの種類を追うことができる
 ```
 # 使用環境
 - Docker
@@ -55,8 +55,6 @@ MixApp
 - has_many :blogs
 - has_many :blog_likes
 - has_many :blog_comments
-  has_many :group_users
-  has_many :groups, through: :group_users
 ## likes テーブル
 
 | Column   | Type   | Options     |
@@ -151,32 +149,6 @@ MixApp
 
 - belongs_to :user
 - belongs_to :blog
-
-## profiles テーブル
-
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-|  blog    | string | null: false |
-|  movie   | string  | unique: true|
-|  post    | string  | unique: true|
-
-### Association
-  belongs_to :user
-  belongs_to :post
-  belongs_to :movie
-  belongs_to :blog
-
-## group_user テーブル
-
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-|  group   | references | foreign_key: true |
-|  user    | references  | foreign_key: true|
-
-### Association 
-  belongs_to :group
-  belongs_to :user
-
 
 
 
