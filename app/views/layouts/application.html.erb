@@ -8,15 +8,15 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <div class="logo">
-    <a href="/">MixApp</a>
+    <h2><%= link_to "MixApp", "/" %></h2>
     </div>
-    </head>
+  </head>
 
   <body id = '<%= controller.controller_name %>-<%= controller.action_name %>'>
-  <%= render 'shared/toast'%>
+    <%= render 'shared/toast'%>
 
-  <%= yield %>
-  <%= render 'shared/footer'%>
+    <%= yield %>
+    <%= render 'shared/footer'%>
 
   </body>
 </html>

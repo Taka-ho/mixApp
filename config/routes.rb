@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users 
-  resources :users, only: [:show]
+  resources :users, only: :show
   resources :blogs do
+    resources :users, only: :show
     resources :blog_comments, only: %i[create destroy]
   end
   resources :movies do
+    resources :users, only: :show
     resources :movie_comments, only: %i[create destroy]
   end
   resources :posts do
+    resources :users, only: :show
     resources :comments, only: %i[create destroy]
   end
   post 'like/:id', to: 'likes#create', as: 'create_like'

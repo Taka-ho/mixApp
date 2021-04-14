@@ -1,66 +1,81 @@
-<div class= 'user-profile'>
+    <div class="content-wrapper">
+        <div class="content-block">
     <div class="content">
         <div class="user-about">
-                    <div class="image">
-                    <% if @user.image.attached? %>
+            <div class="image">
+                <% if @user.image.attached? %>
                     <%= image_tag @user.image %>
-                       <% else %>
+               <% else %>
                    <%= image_tag 'no.user.png' %>
-                       <% end %>
-                    </div>
+                <% end %>
+             </div>
                     <div class="profile">
-                          <div class="name-history">
-                                <div class="name">
-                                    <%= @user.nickname %>
-                                </div>
-                           <div class="mania-histry">
-                                <%= "趣味歴:#{@user.mania_histry}年" %>
-                             </div>
+                        <div class="name-history">
+                            <div class="name">
+                                <%= @user.nickname %>
+                            </div>
+                            <div class="mania-histry">
+                               <%= "趣味歴:#{@user.mania_histry}年" %>
+                           </div>
                         </div>
     
-                            <div class="enjoy-point">
-                                <%= "楽しいポイント#{@user.enjoy_point}"%>
-                            </div>
+                        <div class="enjoy-point">
+                            <%= "楽しいポイント#{@user.enjoy_point}"%>
+                        </div>
+                    </div>
 
                     </div>
-                    <div class="user-content">
-                <div class="user-movie">
-                    <% @user.movies.each do |user| %>
-                        <div class="text">
-                            <h2><%= truncate(user.movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
-                            <h3><%= truncate(user.movie.introduction, length:15) %></h3>
-                            <video src=<%= rails_blob_path(user.movie.movie) %> ,type='movie/mp4 movie/mov', controls>
-                        </div>
-                        <% end %>
-                </div>
-                <div class="user-post">
 
-                 <% @user.posts.each do |user| %>
-                    <div class="text">
-                    <h2><%= truncate(user.post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
-                </div>
-                    <% if user.post.images.attached? %>
-                        <% user.post.images.each do |user| %>
-                            <div class = 'images'>
+                    <div class="tabbed-area">
+
+	<ul class="tabs group">
+	    <li><a href="#box-one">つぶやき</a></li>
+	    <li><a href="#box-two">動画</a></li>
+	    <li><a href="#box-three">ブログ</a></li>
+	</ul>
+	
+	    <div class="box-wrap">
+           <div id="box-one">
+            <% @posts.each do |post| %>
+                <div class="text">
+                   <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
+                 </div>
+                 <% if post.images.attached? %>
+                     <% post.images.each do |image| %>
+                             <div class = 'images'>
                                 <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
-                            </div>
+                           </div>
                         <% end %>
-                    <% end %>
-                    <% end %>
-                </div>
-                <div class="user-blog">
-                    <% @user.blogs.each do |user| %>
-                        <div class="text">
-            <div class="title">
-                <h3>タイトル: <%= user.blog.title %></h3>
-            </div>
-       <h2><%= truncate(strip_tags(user.blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
-  </div>
-                    <% end %>
-
-                </div>
-                </div>
-            </div>
+                <% end %>
+            <% end %>
         </div>
-    </div>
+                                
+            <div id="box-two">
+                <% @movies.each do |movie| %>
+                    <div class="text">
+                        <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
+                        <h3><%= truncate(movie.introduction, length:15) %></h3>
+                        <video src=<%= rails_blob_path(movie.movie) %> ,type='movie/mp4 movie/mov', controls>
+                    </div>
+                <% end %>
+            </div>
+                                
+                <div id="box-three">
+                    <% @blogs.each do |blog| %>
+                </div>
+                <div class="text">
+                        <div class="title">
+                            <h3>タイトル: <%= blog.title %></h3>
+                        </div>
+                    <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
+                </div>
+                <% end %>
+                    </div>
+                </div>
+            </div>
+            </div>
+           </div>
+           <div class="sidebar">
+            <%= render 'shared/menu'%>       
+         </div>
 </div>

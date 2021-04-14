@@ -2,11 +2,11 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
   def show
-    @users = User.includes(:post, :movie, :blog)
-    @user = User.find(params[:id])
-    @post = Post.find(params[:id])
-    @movie = Movie.find(params[:id])
-    @blog = Blog.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    @posts = Post.where(user_id: @user.id)
+    @movies = Movie.where(user_id: @user.id)
+    @blogs = Blog.where(user_id: @user.id)
+
 
   end
 end

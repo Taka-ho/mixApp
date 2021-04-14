@@ -44,7 +44,6 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'factory_bot_rails'
@@ -66,3 +65,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activestorage-validator'
 gem 'rails-i18n' 
 gem 'actiontext'
+gem 'capybara'
