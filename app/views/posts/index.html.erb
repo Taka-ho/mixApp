@@ -41,6 +41,8 @@
          <div id="post_<%= post.id %>">
                 <%= render 'post', post: post %>
             </div>
+            <h3>コメント件数: <%= post.comments.count %></h3>
+            <%= link_to "この方について", post_user_path(post,post.user.id) %>
                 <div class="comment">
                 </div>
                     <%if user_signed_in?%>

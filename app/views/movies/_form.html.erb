@@ -1,10 +1,13 @@
+<div class ='movie-content'>
 <%= form_with model: @movie, local: true do |f| %>
     <p>title</p><%= f.text_field :title %> <br>
     <p>introduction</p><%= f.text_area :introduction %> <br>
     <p>movie</p><%= f.file_field :movie %> <br>
+    <div class = 'submit-block'>
     <%= f.submit '投稿する', class:"button"%>
-
+    </div>
     <% end %>
+    </div>
 
 
     

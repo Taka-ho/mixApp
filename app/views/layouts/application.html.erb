@@ -8,15 +8,21 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <div class="logo">
-    <a href="/">MixApp</a>
+
+    <% if user_signed_in? %>
+    <h2><%= link_to "Mixapp", "/users/#{current_user.id}" %></h2>
+    <% else %>
+    <h2><%= link_to "MixApp", "/" %></h2>
+    <% end %>
+
     </div>
-    </head>
+  </head>
 
   <body id = '<%= controller.controller_name %>-<%= controller.action_name %>'>
-  <%= render 'shared/toast'%>
+    <%= render 'shared/toast'%>
 
-  <%= yield %>
-  <%= render 'shared/footer'%>
+    <%= yield %>
+    <%= render 'shared/footer'%>
 
   </body>
 </html>
