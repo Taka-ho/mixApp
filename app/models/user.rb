@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :blog_likes
   has_many :blog_comments, dependent: :destroy
 
-
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?
   end

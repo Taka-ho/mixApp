@@ -45,12 +45,10 @@ ActiveRecord::Schema.define(version: 202102513060741) do
 
   create_table "blog_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "blog_comment", null: false
-    t.bigint "user_id", null: false
     t.bigint "blog_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_blog_comments_on_blog_id"
-    t.index ["user_id"], name: "index_blog_comments_on_user_id"
   end
 
   create_table "blog_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,9 +61,9 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   create_table "blogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "body"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -84,6 +82,8 @@ ActiveRecord::Schema.define(version: 202102513060741) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "movie_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -106,9 +106,9 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "introduction", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
@@ -137,10 +137,11 @@ ActiveRecord::Schema.define(version: 202102513060741) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_comments", "blogs"
-  add_foreign_key "blog_comments", "users"
   add_foreign_key "blogs", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "movie_comments", "movies"
   add_foreign_key "movie_comments", "users"
   add_foreign_key "movies", "users"

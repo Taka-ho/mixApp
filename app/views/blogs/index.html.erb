@@ -2,53 +2,52 @@
   <div class="content-block">
       <% @blogs.each do |blog| %>
       <div class="content">
-       <div class="user-about">
-           <div class="image">
-           <% if blog.user.image.attached? %>
-           <%= image_tag blog.user.image %>
-              <% else %>
-          <%= image_tag 'no.user.png' %>
-              <% end %>
-           </div>
+             <div class="user-about">
+                    <div class="image">
+                        <% if blog.user.image.attached? %>
+                            <%= image_tag blog.user.image %>
+                        <% else %>
+                            <%= image_tag 'no.user.png' %>
+                        <% end %>
+                    </div>
 
-       <div class="profile">
-          <div class="name-history">
-              <div class="name">
-                  <%= blog.user.nickname %>
-              </div>
-              <div class="mania-histry">
-                  <%= "趣味歴:#{blog.user.mania_histry}年" %>
-              </div>
-           </div>
-           <div class="enjoy-point">
-           <%= "楽しいポイント#{blog.user.enjoy_point}"%>
-           </div>
-       </div>
-     </div>
-     <div class="text">
-            <div class="title">
-                <h3>タイトル: <%= blog.title %></h3>
-            </div>
-       <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
-  </div>
-
-  <div class="action-menu">
-      <div id="blog_<%= blog.id %>">
-          <%= render 'blog', blog: blog %>
-      </div>
-  
-  
-      <h3>コメント件数: <%= blog.blog_comment.count %></h3>
-
-          <% if user_signed_in?%>
-              <div class='user-action'>
-                  <% if current_user.id == blog.user.id %>
-                      <%= link_to "編集", edit_blog_path(blog) %>
-                      <%= link_to "削除", blog_path(blog), method: :delete %>
-                  <% end %>
+                        <div class="profile">
+                            <div class="name-history">
+                                <div class="name">
+                                    <%= blog.user.nickname %>
+                                </div>
+                                <div class="mania-histry">
+                                    <%= "趣味歴:#{blog.user.mania_histry}年" %>
+                                </div>
+                            </div>
+                            <div class="enjoy-point">
+                            <%= "楽しいポイント#{blog.user.enjoy_point}"%>
+                            </div>
+                        </div>
                 </div>
-            <% end %>
-          </div>
+            <div class="text">
+                    <div class="title">
+                        <h3>タイトル: <%= blog.title %></h3>
+                    </div>
+            <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
+            </div>
+
+          <div class="action-menu">
+                <div id="blog_<%= blog.id %>">
+                    <%= render 'blog', blog: blog %>
+                </div>
+                    <h3>コメント件数: <%= blog.blog_comment.count %></h3>
+                    <%= link_to "この方について", blog_user_path(blog,blog.user.id) %>
+
+                <% if user_signed_in?%>
+                    <div class='user-action'>
+                        <% if current_user.id == blog.user.id %>
+                            <%= link_to "編集", edit_blog_path(blog) %>
+                            <%= link_to "削除", blog_path(blog), method: :delete %>
+                        <% end %>
+                    </div>
+                    <% end %>
+            </div>
         </div>
       <% end %>
     </div>
@@ -56,5 +55,4 @@
            <%= render 'shared/menu'%>
       </div> 
   </div> 
-</div>
 

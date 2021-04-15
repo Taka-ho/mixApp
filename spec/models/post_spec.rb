@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe Post, type: :model do
   before do
-      @post = FactoryBot.build(:post)
+    @post = FactoryBot.create(:post)
   end
 describe Post do
   describe 'ツイート投稿' do
@@ -9,11 +9,7 @@ describe Post do
         it 'すべてを入力したら保存できる' do
           expect(@post).to be_valid
         end
-        it '画像が抜けていても登録できること' do
-          @post.images = ''
-          expect(@post).to be_valid
-        end
-    end
+
 
     it 'contentがない場合は投稿できないこと' do
       @post.content = ''
@@ -23,9 +19,10 @@ describe Post do
 
     it 'もし投稿するものがimageではない場合投稿できない' do
       @post.images = "file/test.mp4"
-        @post.valid?
+        @post.images.valid?
         expect(@post.errors.full_messages).to include 
     end
   end
   end
+end
 end

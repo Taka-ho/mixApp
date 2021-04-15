@@ -29,6 +29,11 @@
             <li>
             <%= link_to 'ブログ投稿', new_blog_path %>
             </li>
+
+          <li>
+          <%= link_to "プロフ編集", edit_user_registration_path %>
+        </li>
+
             <% else %>
             <li>    
             <%= link_to 'ログイン', new_user_session_path %>
@@ -45,6 +50,8 @@
         <li>
         <%= link_to 'ブログ一覧', blogs_path %>
       </li>
+
+
             <% end %>
             
 
