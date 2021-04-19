@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :mania_histry
+    validates :mania_histry, format: { with: /\A[0-9]+\z/ }
     validates :enjoy_point
     validates :email
     validates :password, length: { minimum: 6 }

@@ -8,6 +8,5 @@ class Post < ApplicationRecord
 
   validates :images, blob: { content_type: :image } 
 
-
 end
 
