@@ -1,50 +1,37 @@
-version: '3'
 services:
   app:
     build:
-      context: .
-    command: bundle exec puma -C config/puma.rb
-    volumes:
-      - .:/hondaapp
-      - public-data:/hondaapp/public
-      - tmp-data:/hondaapp/tmp
-      - log-data:/hondaapp/log
-    networks:
-      - hondaapp-network
+      context: /Users/taka/hondaapp
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
     depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: hondaapp_development
+      db:
+        condition: service_started
     volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - hondaapp-network
-
+    - /Users/taka/hondaapp:/mysql:rw
+    - public-data:/mysql/public:rw
+    - tmp-data:/mysql/tmp:rw
+    - log-data:/mysql/log:rw
+  db:
+    environment:
+      MYSQL_PASSWORD: password
+    image: mysql:5.7
+    volumes:
+    - /Users/taka/hondaapp/tmp/db:/var/lib/mysql/data:rw
   web:
     build:
-      context: ./nginx_docker
-    volumes:
-      - public-data:/hondaapp/public
-      - tmp-data:/hondaapp/tmp
-    ports:
-      - 80:80
+      context: /Users/taka/hondaapp/nginx
     depends_on:
-      - app
-    networks:
-      - hondaapp-network
-
+      app:
+        condition: service_started
+    ports:
+    - published: 80
+      target: 80
+    volumes:
+    - public-data:/hondaapp/public:rw
+    - tmp-data:/hondaapp/tmp:rw
+version: '3'
 volumes:
-  public-data:
-  tmp-data:
-  log-data:
-  db-data:
-
-networks:
-  hondaapp-network:
-    external: true
+  db-data: {}
+  log-data: {}
+  public-data: {}
+  tmp-data: {}

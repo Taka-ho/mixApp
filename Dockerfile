@@ -1,18 +1,21 @@
 FROM ruby:2.6.5
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential \        
-    nodejs \
-    libpq-dev 
-          
+    apt-get install -y build-essential \ 
+                       libpq-dev \ 
+                       yarn \       
+                       nodejs           
 
+# 作業ディレクトリの作成、設定
+RUN mkdir /app_name 
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /app_name 
+WORKDIR $APP_ROOT
 
-WORKDIR /hondaapp
+# ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
+ADD ./Gemfile $APP_ROOT/Gemfile
+ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-COPY Gemfile /hondaapp/Gemfile
-COPY Gemfile.lock /hondaapp/Gemfile.lock
-
-RUN gem install bundler
+# Gemfileのbundle install
 RUN bundle install
-
-RUN mkdir -p tmp/sockets
+ADD . $APP_ROOT

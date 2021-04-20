@@ -10,7 +10,7 @@ threads min_threads_count, max_threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port        ENV.fetch('PORT') { 3000 }
+port        ENV.fetch('PORT') { 80 }
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -35,7 +35,7 @@ pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
 # preload_app!
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
-port        ENV.fetch("PORT") { 3000 }
+port        ENV.fetch("PORT") { 80 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 plugin :tmp_restart
 
@@ -48,7 +48,7 @@ stdout_redirect "#{app_root}/log/puma.stdout.log", "#{app_root}/log/puma.stderr.
 plugin :tmp_restart
 threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
 threads threads_count, threads_count
-port        ENV.fetch("PORT") { 3000 }
+port        ENV.fetch("PORT") { 80 }
 environment ENV.fetch("RAILS_ENV") { "development" }
 plugin :tmp_restart
 
