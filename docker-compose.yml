@@ -22,10 +22,10 @@ services:
     ports:
       - "3306:3306"
     volumes:
-    - /Users/taka/hondaapp/tmp/db:/var/lib/mysql/data:rw
+    - ./tmp/db:/var/lib/mysql/data:rw
   web:
     build:
-      context: /Users/taka/hondaapp/nginx
+      context: ./nginx
     depends_on:
       app:
         condition: service_started
