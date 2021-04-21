@@ -14,7 +14,13 @@ services:
   db:
     environment:
       MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+      
     image: mysql:5.7
+    ports:
+      - "3306:3306"
     volumes:
     - /Users/taka/hondaapp/tmp/db:/var/lib/mysql/data:rw
   web:
@@ -24,8 +30,8 @@ services:
       app:
         condition: service_started
     ports:
-    - published: 80
-      target: 80
+    - published: 3000
+      target: 3000
     volumes:
     - public-data:/hondaapp/public:rw
     - tmp-data:/hondaapp/tmp:rw
