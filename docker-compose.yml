@@ -13,11 +13,11 @@ services:
     - log-data:/mysql/log:rw
   db:
     environment:
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-      
+      MYSQL_ROOT_USER: root
     image: mysql:5.7
     ports:
       - "3306:3306"
