@@ -67,4 +67,6 @@ gem 'rails-i18n'
 gem 'actiontext'
 gem 'capybara'
 gem 'dotenv-rails'
+gem 'trix'
+
 gem "aws-sdk-s3", require: false
