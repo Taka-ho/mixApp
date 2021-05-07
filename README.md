@@ -6,37 +6,40 @@ MixApp
 
 # 目指した課題解決
 このアプリケーションを使うことで、ブログをやっている動画配信者の方たちのコンテンツをスムーズに追うことができます。
-今までは動画サイトからブログサイトに飛ぶときに非常にめんどくさい工程が必要でしたが、このアプリを使えばそんなことはなくなります。
+今までは動画サイトからブログサイトに飛ぶときにプラットフォームの移動という非常にめんどくさい工程が必要でしたが、このアプリを使えばそんなことはなくなります。
 
-# 要件定義
-```ユーザー機能
+# アプリケーションの機能一覧
+
+```
 ユーザー新規登録
 ユーザーログアウト
 ユーザーログイン
 ユーザー情報編集機能
-
-```
-
-```投稿機能
-ユーザー投稿機能(短文)
+ユーザー投稿機能(短文と画像)
 ユーザー投稿機能(動画)
-ユーザー投稿機能(ブログ)
+ユーザー投稿機能(ブログと画像)
 それぞれの投稿に対してユーザーは高評価が押せる
 それぞれの投稿に対してコメントをできる
 それぞれの投稿に対しての高評価の数が表示される
 それぞれの投稿に対してコメントの数が表示される
+もしも短文の投稿画面に動画を投稿しようとしてもバリデーションで弾かれてしまう
+同様に動画投稿ページに画像を入れようとすると、バリデーションで弾かれてしまう。
+ユーザー別の投稿一覧ページになっていてそのユーザーが投稿した全てのコンテンツの種類を追うことができる(ログインしていないと見ることはできない。)
 ```
 
-```プロフィール機能
-ユーザー別の投稿一覧ページになっていてそのユーザーが投稿した全てのコンテンツの種類を追うことができる
+```テストユーザーアカウント
+Email:test2351@gmail.com
+Password:wall2341
 ```
+
+
 # 使用環境
-- Docker
-- Docker-compose 
+- Docker 20.10.5
+- Docker-compose 1.28.5
 - Ruby on rails6
 - Ruby 2.6.5
 - Mac OS Big Sur (インテル版)
-
+- AWS(EC2,S3,VPC)
 # テーブル設計
 
 ## users テーブル
@@ -76,7 +79,11 @@ MixApp
 | introduction  | references | null: false, foreign_key: true ,unique: true |
 
 - belongs_to :user
-- belongs_to :movie_like
+-  has_many :movie_liked_users, through: :movie_likes, source: :user
+-  has_many :movie_likes
+-  has_many :movie_comments, dependent: :destroy
+-  belongs_to :user
+-  has_many :movie_likes
 
 
 ## movie_likes テーブル
@@ -97,7 +104,9 @@ MixApp
 | user     | references | null: false, foreign_key: true |
 
 - belongs_to :user
-
+- has_many :likes
+- has_many :liked_users, through: :likes, source: :user
+- has_many :comments, dependent: :destroy
 
 ## comments テーブル
 
@@ -132,6 +141,10 @@ MixApp
 
 ### Association 
 - belongs_to :user
+- has_many :blog_comment,dependent: :destroy
+- has_many :blog_likes
+- has_many :blog_liked_users, through: :blog_likes, source: :user
+
 
 ## blog_likes テーブル
 

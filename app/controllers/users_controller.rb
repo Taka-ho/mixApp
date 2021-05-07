@@ -6,7 +6,5 @@ class UsersController < ApplicationController
     @posts = Post.where(user_id: @user.id)
     @movies = Movie.where(user_id: @user.id)
     @blogs = Blog.where(user_id: @user.id)
-
-
   end
 end
