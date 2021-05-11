@@ -1,6 +1,9 @@
 <div class="content">
   <%= render 'user-about', blog: @blog %>
         <div class="text">
+          <div class="title">
+            <h3>タイトル: <%= @blog.title %></h3>
+          </div>
         <p><%= @blog.body %></p>
         </div>
 
