@@ -3,28 +3,7 @@
     <div class="content-block">
         <% @posts.each do |post| %>
         <div class="content">
-         <div class="user-about">
-             <div class="image">
-             <% if post.user.image.attached? %>
-             <%= image_tag post.user.image %>
-                <% else %>
-            <%= image_tag 'no.user.png' %>
-                <% end %>
-             </div>
-         <div class="profile">
-            <div class="name-history">
-                <div class="name">
-                <%= post.user.nickname %>
-                </div>
-                <div class="mania-histry">
-                    <%= "趣味歴:#{post.user.mania_histry}年" %>
-                </div>
-             </div>
-             <div class="enjoy-point">
-             <%= "楽しいポイント#{post.user.enjoy_point}"%>
-             </div>
-         </div>
-       </div>
+            <%= render 'user-about', post: post %>
        <div class="text">
         <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
     </div>
