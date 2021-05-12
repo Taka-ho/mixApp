@@ -1,47 +1,43 @@
 <div class="content">
-  <%= render 'user-about', post: @post %>
+      <%= render 'user-about', post: @post %>
 
-<div class="text">
-  <p><%= @post.content %></p>
-</div>
-<% if @post.images.attached? %>
-  <% @post.images.each do |image| %>
-      <div class = 'images'>
-         <%= image_tag image %>
+      <div class="text">
+        <p><%= @post.content %></p>
       </div>
-  <% end %>
-<% end %>
-<div class="action-menu">
+    <% if @post.images.attached? %>
+         <% @post.images.each do |image| %>
+            <div class = 'images'>
+              <%= image_tag image %>
+            </div>
+         <% end %>
+    <% end %>
+    <div class="action-menu">
 
-  <% if user_signed_in? %>
-      <div class="like">
-          <div id="post_<%= @post.id %>">
-             <%= render @post, post: @post %>
+        <% if user_signed_in? %>
+            <div class="like">
+                  <div id="post_<%= @post.id %>">
+                    <%= render @post, post: @post %>
+                  </div>
+            <% end %>
+            <h3>コメント件数: <%= @post.comments.count %></h3>
+
+              <div class="comment">
+                <%if user_signed_in?%>
+                  <%= form_for [@post, @comment] do |f| %>
+                    <%= f.text_area :comment, size: "40x2" %>
+                    <%= f.submit '送信', class: "btn-sm btn-primary" %>
+                <% end %>
+              </div>
           </div>
-     <% end %>
-     <h3>コメント件数: <%= @post.comments.count %></h3>
-
-      <div class="comment">
-        <%if user_signed_in?%>
-          <%= form_for [@post, @comment] do |f| %>
-            <%= f.text_area :comment, size: "40x2" %>
-            <%= f.submit '送信', class: "btn-sm btn-primary" %>
         <% end %>
-      </div>
+        <% @comments.each do |comment| %>
+          <div class="comment-user">
+            <tr>
+              <td><%= comment.user.nickname %>:</td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
+            </tr>
+          </div>
+        <% end %>
     </div>
-  <% end %>
-  <% @comments.each do |comment| %>
-    <div class="comment-user">
-      <tr>
-        <td><%= comment.user.nickname %>:</td>
-        <td><%= comment.comment %></td>
-        <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
-      </tr>
-    </div>
-  <% end %>
-</div>
-    
-    </div>
-</div>
-
 </div>
