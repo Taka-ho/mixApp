@@ -5,6 +5,13 @@
             <h3>タイトル: <%= @blog.title %></h3>
           </div>
         <p><%= @blog.body %></p>
+        <% if @blog.images.attached? %>
+        <% @blog.images.each do |image| %>
+            <div class = 'images'>
+            <%= image_tag images %>
+            </div>
+        <% end %>
+      <% end %>
         </div>
 
       <div class="action-menu">
