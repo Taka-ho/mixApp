@@ -1,31 +1,12 @@
 <div class="content">
-        <div class="user-about">
-              <div class="image">
-                <% if @blog.user.image.attached? %>
-                  <%= image_tag @blog.user.image %>
-                <% else %>
-                  <%= image_tag 'no.user.png' %>
-                <% end %>
-              </div>
-
-          <div class="profile">
-            <div class="name-history">
-                <div class="name">
-                  <%= @blog.user.nickname %>
-                </div>
-                <div class="mania-histry">
-                    <%= "趣味歴:#{@blog.user.mania_histry}年" %>
-                </div>
-            </div>
-              
-              <div class="enjoy-point">
-                <%= "楽しいポイント#{@blog.user.enjoy_point}"%>
-              </div>
-          </div>
-        </div>
+  <%= render 'user-about', blog: @blog%>
 
         <div class="text">
+          <div class="title">
+              <h3>タイトル: <%= @blog.title %></h3>
+          </div>
         <p><%= @blog.body %></p>
+       
         </div>
 
       <div class="action-menu">
@@ -40,11 +21,7 @@
 
                   <div class="comment">
                   <% if user_signed_in? %>
-                        <%= form_for [@blog, @blog_comment] do |f| %>
-                          <%= f.text_area :blog_comment, size: "40x2" %>
-                          <%= f.submit '送信', class: "btn-sm btn-primary" %>
-                          <% end %>
-
+                  <%= render partial: 'comments/form', locals: { comments: @comments } %>
                       <% @blog_comments.each do |blog_comment| %>
                             <div class="comment-user">
                               <tr>

@@ -1,73 +1,42 @@
 <div class="content">
-<div class="user-about">
-    <div class="image">
-    <% if @post.user.image.attached? %>
-    <%= image_tag @post.user.image %>
-       <% else %>
-   <%= image_tag 'no.user.png' %>
-       <% end %>
+      <%= render 'user-about', post: @post %>
+
+    <div class="text">
+      <p><%= @post.content %></p>
     </div>
-
-<div class="profile">
-   <div class="name-history">
-       <div class="name">
-
-       <%= @post.user.nickname %>
-
-
-       </div>
-       <div class="mania-histry">
-           <%= "趣味歴:#{@post.user.mania_histry}年" %>
-       </div>
-    </div>
-    
-    <div class="enjoy-point">
-    <%= "楽しいポイント#{@post.user.enjoy_point}"%>
-    </div>
-</div>
-</div>
-
-<div class="text">
-  <p><%= @post.content %></p>
-</div>
-<% if @post.images.attached? %>
-  <% @post.images.each do |image| %>
-      <div class = 'images'>
-         <%= image_tag image %>
-      </div>
-  <% end %>
-<% end %>
-<div class="action-menu">
-
-  <% if user_signed_in? %>
-      <div class="like">
-          <div id="post_<%= @post.id %>">
-             <%= render @post, post: @post %>
-          </div>
-     <% end %>
-     <h3>コメント件数: <%= @post.comments.count %></h3>
-
-      <div class="comment">
-        <%if user_signed_in?%>
-          <%= form_for [@post, @comment] do |f| %>
-            <%= f.text_area :comment, size: "40x2" %>
-            <%= f.submit '送信', class: "btn-sm btn-primary" %>
+    <% if @post.images.attached? %>
+      <% @post.images.each do |image| %>
+            <div class = 'images'>
+              <%= image_tag image %>
+            </div>
         <% end %>
-      </div>
-    </div>
-  <% end %>
-  <% @comments.each do |comment| %>
-    <div class="comment-user">
-      <tr>
-        <td><%= comment.user.nickname %>:</td>
-        <td><%= comment.comment %></td>
-        <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
-      </tr>
-    </div>
-  <% end %>
-</div>
-    
+      <% end %>
+      <div class="action-menu">
+
+        <% if user_signed_in? %>
+            <div class="like">
+                  <div id="post_<%= @post.id %>">
+                    <%= render @post, post: @post %>
+                  </div>
+        <% end %>
+            <h3>コメント件数: <%= @post.comments.count %></h3>
+              <div class="comment">
+                <% if user_signed_in? %>
+                <div id = "comments_area">
+                  <%= render partial: 'comments/form', locals: { comments: @comments } %>
+                </div>
+              </div>
+          </div>
+      <% end %>
+        <% @comments.each do |comment| %>
+          <div class="comment-user">
+            <tr>
+              <td><%= comment.user.nickname %>:</td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
+            </tr>
+          </div>
+        <% end %>
     </div>
 </div>
 
-</div>

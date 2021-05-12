@@ -49,28 +49,7 @@
                                 <%if @user.posts.exists? %>
                                     <% @posts.each do |post| %>
                                     <div class="content">
-                                     <div class="user-about">
-                                         <div class="image">
-                                         <% if post.user.image.attached? %>
-                                         <%= image_tag post.user.image %>
-                                            <% else %>
-                                        <%= image_tag 'no.user.png' %>
-                                            <% end %>
-                                         </div>
-                                     <div class="profile">
-                                        <div class="name-history">
-                                            <div class="name">
-                                            <%= post.user.nickname %>
-                                            </div>
-                                            <div class="mania-histry">
-                                                <%= "趣味歴:#{post.user.mania_histry}年" %>
-                                            </div>
-                                         </div>
-                                         <div class="enjoy-point">
-                                         <%= "楽しいポイント#{post.user.enjoy_point}"%>
-                                         </div>
-                                     </div>
-                                   </div>
+                                        <%= render 'posts/user-about', post: post %>
                                    <div class="text">
                                     <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
                                 </div>
@@ -130,30 +109,7 @@
                                 <% if @user.movies.exists? %>
                                     <% @movies.each do |movie| %>
                                     <div class="content">
-                                     <div class="user-about">
-                                         <div class="image">
-                                         <% if movie.user.image.attached? %>
-                                         <%= image_tag movie.user.image %>
-                                            <% else %>
-                                        <%= image_tag 'no.user.png' %>
-                                            <% end %>
-                                         </div>
-                            
-                                      <div class="profile">
-                                        <div class="name-history">
-                                                <div class="name">
-                                                    <%= movie.user.nickname %>
-                                                </div>
-                                                <div class="mania-histry">
-                                                    <%= "趣味歴:#{movie.user.mania_histry}年" %>
-                                                </div>
-                                         </div>
-                                         <div class="enjoy-point">
-                                         <%= "楽しいポイント#{movie.user.enjoy_point}"%>
-                                         </div>
-                                     </div>
-                                   </div>
-                            
+                                        <%= render 'movies/user-about', movie: movie %>
                                    <div class="text">
                                              <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
                                              <h3><%= truncate(movie.introduction, length:15) %></h3>
@@ -202,29 +158,7 @@
                                     <% if @user.blogs.exists? %>
                                     <% @blogs.each do |blog| %>
                                     <div class="content">
-                                           <div class="user-about">
-                                                  <div class="image">
-                                                      <% if blog.user.image.attached? %>
-                                                          <%= image_tag blog.user.image %>
-                                                      <% else %>
-                                                          <%= image_tag 'no.user.png' %>
-                                                      <% end %>
-                                                  </div>
-                              
-                                                      <div class="profile">
-                                                          <div class="name-history">
-                                                              <div class="name">
-                                                                  <%= blog.user.nickname %>
-                                                              </div>
-                                                              <div class="mania-histry">
-                                                                  <%= "趣味歴:#{blog.user.mania_histry}年" %>
-                                                              </div>
-                                                          </div>
-                                                          <div class="enjoy-point">
-                                                          <%= "楽しいポイント#{blog.user.enjoy_point}"%>
-                                                          </div>
-                                                      </div>
-                                              </div>
+                                        <%= render 'blogs/user-about', blog: blog%>
                                           <div class="text">
                                                   <div class="title">
                                                       <h3>タイトル: <%= blog.title %></h3>
