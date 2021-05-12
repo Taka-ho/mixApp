@@ -1,220 +1,220 @@
 <div class="content-wrapper">
-<div class="content-block">
-<div class="content">
-<div class="user-about">
-    <div class="image">
-        <% if @user.image.attached? %>
-            <%= image_tag @user.image %>
-       <% else %>
-           <%= image_tag 'no.user.png' %>
-        <% end %>
-     </div>
-            <div class="profile">
-                <div class="name-history">
-                    <div class="name">
-                        <%= @user.nickname %>
-                    </div>
-                    <div class="mania-histry">
-                       <%= "趣味歴:#{@user.mania_histry}年" %>
-                   </div>
+    <div class="content-block">
+        <div class="content">
+            <div class="user-about">
+                <div class="image">
+                    <% if @user.image.attached? %>
+                        <%= image_tag @user.image %>
+                    <% else %>
+                    <%= image_tag 'no.user.png' %>
+                    <% end %>
                 </div>
+                        <div class="profile">
+                            <div class="name-history">
+                                <div class="name">
+                                    <%= @user.nickname %>
+                                </div>
+                                <div class="mania-histry">
+                                <%= "趣味歴:#{@user.mania_histry}年" %>
+                            </div>
+                            </div>
 
-                <div class="enjoy-point">
-                    <%= "楽しいポイント#{@user.enjoy_point}"%>
-                </div>
+                            <div class="enjoy-point">
+                                <%= "楽しいポイント#{@user.enjoy_point}"%>
+                            </div>
+                        </div>
             </div>
         </div>
-            </div>
 
-            <div class="tabbed-area">
+                    <div class="tabbed-area">
 
-                <secton class="tabBox">
-                    <input type="radio" id="tab_1" class="tabRadio" name="tab" checked>
-                    <input type="radio" id="tab_2" class="tabRadio" name="tab">
-                    <input type="radio" id="tab_3" class="tabRadio" name="tab">
-                
-                    <ul class="tabList">
-                        <li class="tab">
-                            <label id="tab_label_1" for="tab_1">つぶやき</label>
-                        </li>
-                        <li class="tab">
-                            <label id="tab_label_2" for="tab_2">動画</label>
-                        </li>
-                        <li class="tab">
-                            <label id="tab_label_3" for="tab_3">ブログ</label>
-                        </li>
-                    </ul>
-                    <div class="tabContentList">
-                        <article class="tabContent active" id="content_1">
-                        <%if @user.posts.exists? %>
-                            <% @posts.each do |post| %>
-                            <div class="content">
-                                <%= render 'posts/user-about', post: post %>
-                           <div class="text">
-                            <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
-                        </div>
-                            <% if post.images.attached? %>
-                                <% post.images.each do |image| %>
-                                    <div class = 'images'>
-                                        <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
-                                    </div>
-                                <% end %>
-                            <% end %>
-                    
-                             <div class="action-menu">
-                              
-                             <div id="post_<%= post.id %>">
-                                <% if user_signed_in? %>
-                                <h3>いいね件数: <%= post.likes.count %></h3>
-                            
-                            <% else %>
-                                <h3>いいね件数: <%= post.likes.count %></h3>
-                            <% end %>
-                            
-                            <% if user_signed_in? %>
-                                  <div class="like">
-                                    <div class = 'like-button'>
-                                      <% if current_user.liked_by?(post.id) %>
-                                            <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE,remote: true %></td>
-                                            <i class="fa fa-heart unlike-btn"></i>
-                                        <% else %>
-                                            <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :post, remote: true %></td>
-                                            <i class="fa fa-heart like-btn"></i>
-                                      <% end %>
-                                   </div>
+                        <secton class="tabBox">
+                            <input type="radio" id="tab_1" class="tabRadio" name="tab" checked>
+                            <input type="radio" id="tab_2" class="tabRadio" name="tab">
+                            <input type="radio" id="tab_3" class="tabRadio" name="tab">
+                        
+                            <ul class="tabList">
+                                <li class="tab">
+                                    <label id="tab_label_1" for="tab_1">つぶやき</label>
+                                </li>
+                                <li class="tab">
+                                    <label id="tab_label_2" for="tab_2">動画</label>
+                                </li>
+                                <li class="tab">
+                                    <label id="tab_label_3" for="tab_3">ブログ</label>
+                                </li>
+                            </ul>
+                            <div class="tabContentList">
+                                <article class="tabContent active" id="content_1">
+                                <% if @user.posts.exists? %>
+                                    <% @posts.each do |post| %>
+                                    <div class="content">
+                                        <%= render 'posts/user-about', post: post %>
+                                <div class="text">
+                                    <h2><%= truncate(post.content, length:15) %></h2><%= link_to "コメントor続きをよむ", "/posts/#{post.id}" %>
                                 </div>
-                            <% end %>
-                                </div>
-                                <h3>コメント件数: <%= post.comments.count %></h3>
-                                    <div class="comment">
-                                    </div>
-                                        <%if user_signed_in?%>
-                                            <div class = 'user-action'>
-                                            <%= link_to "この方について", post_user_path(post,post.user.id) %>
-                                                <% if current_user.id == post.user.id %>
-                                                     <%= link_to "編集", edit_post_path(post) %>
-                                                     <%= link_to "削除", post_path(post), method: :delete %>
-                                                 <% end %>
+                                    <% if post.images.attached? %>
+                                        <% post.images.each do |image| %>
+                                            <div class = 'images'>
+                                                <%= image_tag image.variant(resize: "1280x720"), class: "content-image" %>
                                             </div>
                                         <% end %>
-                                    </div>
-                                </div>
-                            <% end %>
-                            <% else %>
-                                <h1>投稿はありません</h1>
-                            <% end %>
-
-                        </article>
-                        <article class="tabContent" id="content_2">
-                        <% if @user.movies.exists? %>
-                            <% @movies.each do |movie| %>
-                            <div class="content">
-                                <%= render 'movies/user-about', movie: movie %>
-                           <div class="text">
-                                     <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
-                                     <h3><%= truncate(movie.introduction, length:15) %></h3>
-                                    <video src=<%= rails_blob_path(movie.movie) %> ,type='movie/mp4 movie/mov', controls>
-                            </div>
+                                    <% end %>
                             
-                            <div class="action-menu">
-                            <div id="movie_<%= movie.id %>">
-                                <%if user_signed_in?%>
-                                <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-                                
-                                <% else %>
-                                <h3>いいね件数: <%= movie.movie_likes.count %></h3>
-                                
-                                <% end %>
-                                <div class="comment">
-                                      <div class = 'like-button'>
-                                        <% if current_user.movie_liked_by?(movie.id) %>
-                                                 <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE,remote: true %></td>
-                                            <i class="fa fa-heart unlike-btn"></i>
-                                        <% else %>
-                                                <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post,remote: true %></td>
-                                            <i class="fa fa-heart like-btn"></i>
-                                         <% end %>    
-                                    </div>
-                                </div>
-                        </div>
-                            <h3>コメント件数: <%= movie.movie_comments.count %></h3>
-                    
-                                    <% if user_signed_in?%>
-                                        <div class='user-action'>
-                                            <% if current_user.id == movie.user.id %>
-                                                <%= link_to "編集", edit_movie_path(movie) %>
-                                                <%= link_to "削除", movie_path(movie), method: :delete %>
-                                            <% end %>
-                                          </div>
-                                      <% end %>
-                                    </div>
-                                  </div>
-                                <% end %>
-                                <% else %>
-                                <h1>投稿はありません</h1>
-                                <% end %>
-                        </article>
-                        <article class="tabContent" id="content_3">
-                            <% if @user.blogs.exists? %>
-                            <% @blogs.each do |blog| %>
-                            <div class="content">
-                                <%= render 'blogs/user-about', blog: blog%>
-                                  <div class="text">
-                                          <div class="title">
-                                              <h3>タイトル: <%= blog.title %></h3>
-                                          </div>
-                                  <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
-                                  </div>
-                      
-                                <div class="action-menu">
-                                      <div id="blog_<%= blog.id %>">
+                                    <div class="action-menu">
+                                    
+                                    <div id="post_<%= post.id %>">
                                         <% if user_signed_in? %>
-                                        <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                        <h3>いいね件数: <%= post.likes.count %></h3>
                                     
                                     <% else %>
-                                        <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                        <h3>いいね件数: <%= post.likes.count %></h3>
                                     <% end %>
                                     
                                     <% if user_signed_in? %>
-                                          <div class="like">
-                                           <div class = 'like-button'>
-                                              <% if current_user.blog_liked_by?(blog.id) %>
-                                                    <td><%= link_to 'いいねを外す', destroy_blog_like_path(blog), class: "like-link", method: :DELETE,remote: true %></td>
+                                        <div class="like">
+                                            <div class = 'like-button'>
+                                            <% if current_user.liked_by?(post.id) %>
+                                                    <td><%= link_to 'いいねを外す', destroy_like_path(post), class: "like-link", method: :DELETE,remote: true %></td>
                                                     <i class="fa fa-heart unlike-btn"></i>
                                                 <% else %>
-                                                    <td><%= link_to 'いいね', create_blog_like_path(blog), class: "like-link", method: :post, remote: true %></td>
+                                                    <td><%= link_to 'いいね', create_like_path(post), class: "like-link", method: :post, remote: true %></td>
                                                     <i class="fa fa-heart like-btn"></i>
-                                              <% end %>
-                                           </div>
+                                            <% end %>
+                                        </div>
                                         </div>
                                     <% end %>
-                                      </div>
-                          
-                              
-                                          <h3>コメント件数: <%= blog.blog_comment.count %></h3>
-                      
-                                      <% if user_signed_in?%>
-                                          <div class='user-action'>
-                                              <% if current_user.id == blog.user.id %>
-                                                  <%= link_to "編集", edit_blog_path(blog) %>
-                                                  <%= link_to "削除", blog_path(blog), method: :delete %>
-                                              <% end %>
-                                          </div>
-                                          <% end %>
-                                  </div>
-                              </div>
-                            <% end %>
-                            <% else %>
-                            <h1>投稿はありません</h1>
-                            <% end %>
-                        </article>
-                    </div>
-                </secton>
-        </div>
-    
+                                        </div>
+                                        <h3>コメント件数: <%= post.comments.count %></h3>
+                                            <div class="comment">
+                                            </div>
+                                                <%if user_signed_in?%>
+                                                    <div class = 'user-action'>
+                                                    <%= link_to "この方について", post_user_path(post,post.user.id) %>
+                                                        <% if current_user.id == post.user.id %>
+                                                            <%= link_to "編集", edit_post_path(post) %>
+                                                            <%= link_to "削除", post_path(post), method: :delete %>
+                                                        <% end %>
+                                                    </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                    <% else %>
+                                        <h1>投稿はありません</h1>
+                                    <% end %>
+
+                                </article>
+                                <article class="tabContent" id="content_2">
+                                <% if @user.movies.exists? %>
+                                    <% @movies.each do |movie| %>
+                                    <div class="content">
+                                        <%= render 'movies/user-about', movie: movie %>
+                                <div class="text">
+                                            <h2><%= truncate(movie.title, length:15) %></h2><%= link_to "コメントor続きをよむ", "/movies/#{movie.id}" %>
+                                            <h3><%= truncate(movie.introduction, length:15) %></h3>
+                                            <video src=<%= rails_blob_path(movie.movie) %> ,type='movie/mp4 movie/mov', controls>
+                                    </div>
+                                    
+                                    <div class="action-menu">
+                                    <div id="movie_<%= movie.id %>">
+                                        <%if user_signed_in?%>
+                                        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+                                        
+                                        <% else %>
+                                        <h3>いいね件数: <%= movie.movie_likes.count %></h3>
+                                        
+                                        <% end %>
+                                        <div class="comment">
+                                            <div class = 'like-button'>
+                                                <% if current_user.movie_liked_by?(movie.id) %>
+                                                        <td><%= link_to 'いいねを外す', destroy_movie_like_path(movie), class: "like-link", method: :DELETE,remote: true %></td>
+                                                    <i class="fa fa-heart unlike-btn"></i>
+                                                <% else %>
+                                                        <td><%= link_to 'いいね', create_movie_like_path(movie), class: "like-link", method: :post,remote: true %></td>
+                                                    <i class="fa fa-heart like-btn"></i>
+                                                <% end %>    
+                                            </div>
+                                        </div>
+                                </div>
+                                    <h3>コメント件数: <%= movie.movie_comments.count %></h3>
+                            
+                                            <% if user_signed_in?%>
+                                                <div class='user-action'>
+                                                    <% if current_user.id == movie.user.id %>
+                                                        <%= link_to "編集", edit_movie_path(movie) %>
+                                                        <%= link_to "削除", movie_path(movie), method: :delete %>
+                                                    <% end %>
+                                                </div>
+                                            <% end %>
+                                            </div>
+                                        </div>
+                                        <% end %>
+                                        <% else %>
+                                        <h1>投稿はありません</h1>
+                                        <% end %>
+                                </article>
+                                <article class="tabContent" id="content_3">
+                                    <% if @user.blogs.exists? %>
+                                    <% @blogs.each do |blog| %>
+                                    <div class="content">
+                                        <%= render 'blogs/user-about', blog: blog%>
+                                        <div class="text">
+                                                <div class="title">
+                                                    <h3>タイトル: <%= blog.title %></h3>
+                                                </div>
+                                        <h2><%= truncate(strip_tags(blog.body.to_s),length: 14) %></h2></h2><%= link_to "コメントor続きをよむ", "/blogs/#{blog.id}" %>
+                                        </div>
+                            
+                                        <div class="action-menu">
+                                            <div id="blog_<%= blog.id %>">
+                                                <% if user_signed_in? %>
+                                                <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                            
+                                            <% else %>
+                                                <h3>いいね件数: <%= blog.blog_likes.count %></h3>
+                                            <% end %>
+                                            
+                                            <% if user_signed_in? %>
+                                                <div class="like">
+                                                <div class = 'like-button'>
+                                                    <% if current_user.blog_liked_by?(blog.id) %>
+                                                            <td><%= link_to 'いいねを外す', destroy_blog_like_path(blog), class: "like-link", method: :DELETE,remote: true %></td>
+                                                            <i class="fa fa-heart unlike-btn"></i>
+                                                        <% else %>
+                                                            <td><%= link_to 'いいね', create_blog_like_path(blog), class: "like-link", method: :post, remote: true %></td>
+                                                            <i class="fa fa-heart like-btn"></i>
+                                                    <% end %>
+                                                </div>
+                                                </div>
+                                            <% end %>
+                                            </div>
+                                
+                                    
+                                                <h3>コメント件数: <%= blog.blog_comment.count %></h3>
+                            
+                                            <% if user_signed_in?%>
+                                                <div class='user-action'>
+                                                    <% if current_user.id == blog.user.id %>
+                                                        <%= link_to "編集", edit_blog_path(blog) %>
+                                                        <%= link_to "削除", blog_path(blog), method: :delete %>
+                                                    <% end %>
+                                                </div>
+                                                <% end %>
+                                        </div>
+                                    </div>
+                                    <% end %>
+                                    <% else %>
+                                    <h1>投稿はありません</h1>
+                                    <% end %>
+                                </article>
+                            </div>
+                        </secton>
+                </div>
+            
+            </div>
+            <div class="sidebar">
+                <%= render 'shared/menu'%>       
+            </div>
     </div>
-    <div class="sidebar">
-        <%= render 'shared/menu'%>       
-     </div>
-   </div>
 </div>
