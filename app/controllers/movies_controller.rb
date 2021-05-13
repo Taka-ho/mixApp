@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user
-    @movie = Movie.new(params.require(:movie).permit(:title,:introduction, :movie))
+    @movie = Movie.create(movie_params)
     if @movie.save
       redirect_to movies_path, notice: '投稿に成功しました'
     else
