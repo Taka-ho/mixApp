@@ -4,7 +4,7 @@ FROM ruby:2.6.5
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
                        libpq-dev \
-                       apt-get install imagemagick
+                       imagemagick
                       
 # yarnパッケージ管理ツールをインストール
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
