@@ -3,8 +3,9 @@ FROM ruby:2.6.5
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
-                       libpq-dev 
-                       
+                       libpq-dev \
+                       apt-get install imagemagick
+                      
 # yarnパッケージ管理ツールをインストール
 RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
