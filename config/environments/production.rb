@@ -61,3 +61,5 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "app_name_production"
 
   config.action_mailer.perform_caching = false
+
+end

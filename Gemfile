@@ -68,3 +68,4 @@ gem 'dotenv-rails'
 gem 'trix'
 
 gem "aws-sdk-s3", require: false
+gem 'dotenv-rails'
