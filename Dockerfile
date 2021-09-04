@@ -33,4 +33,5 @@ ADD . $APP_ROOT
 
 #Vimのインストール
 
-RUN apt-get install -y vim
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "vim"]
