@@ -1,10 +1,6 @@
 FROM nginx
 
-# インクルード用のディレクトリ内を削除
-RUN rm -f /etc/nginx/conf.d/*
+# nginx config file
+COPY ./nginx/*.conf /etc/nginx/conf.d/
 
-# Nginxの設定ファイルをコンテナにコピー
-ADD nginx.conf /etc/nginx/nginx.conf
-
-# ビルド完了後にNginxを起動
-CMD /usr/sbin/nginx -g 'daemon off;' -c /etc/nginx/nginx.conf
+WORKDIR /var/www/html

@@ -103,6 +103,8 @@ ActiveRecord::Schema.define(version: 202102513060741) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_movie_likes_on_movie_id"
+    t.index ["user_id"], name: "index_movie_likes_on_user_id"
   end
 
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -147,6 +149,8 @@ ActiveRecord::Schema.define(version: 202102513060741) do
   add_foreign_key "likes", "users"
   add_foreign_key "movie_comments", "movies"
   add_foreign_key "movie_comments", "users"
+  add_foreign_key "movie_likes", "movies"
+  add_foreign_key "movie_likes", "users"
   add_foreign_key "movies", "users"
   add_foreign_key "posts", "users"
 end
