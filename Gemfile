@@ -70,3 +70,4 @@ gem 'trix'
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails'
 gem 'websocket-driver'
+gem 'dotenv-rails'

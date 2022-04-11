@@ -47,6 +47,13 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+rds:
+  host: <%= ENV['RDS_ENDPOINT'] %>
+  database: <%= ENV['RDS_DBNAME'] %>
+  username: <%= ENV['RDS_MASTER_USER'] %>
+  password: <%= ENV['RDS_MASTER_PASSWORD'] %>
+
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>

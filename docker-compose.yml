@@ -5,17 +5,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
-
     ports:
       - "3306:3306"
 
-
   web:
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
-    command: bundle exec puma -C config/puma.rb
-    command: rails s -p 3000 -b '0.0.0.0'
+    build: .
+    command: rails s -p 3000 -b '0.0.0.0 && rails action_text:install'
     volumes:
       - .:/app_name
     ports:
